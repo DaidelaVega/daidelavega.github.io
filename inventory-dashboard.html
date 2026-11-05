@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory Reliability Dashboard · Caso de estudio | Dai de la Vega</title>
+<meta name="description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: dashboard de confiabilidad de stock para operaciones.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dai de la Vega">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Inventory Reliability Dashboard · Caso de estudio | Dai de la Vega">
+<meta property="og:description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: dashboard de confiabilidad de stock para operaciones.">
+<meta property="og:url" content="https://daidelavega.com/inventory-dashboard">
+<link rel="canonical" href="https://daidelavega.com/inventory-dashboard">
+<meta name="twitter:card" content="summary">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#f4f1fa}
+  *{box-sizing:border-box}
+  body,#app,#cs-app{font-family:'Space Grotesk',sans-serif}
+  a,button,input,select,textarea{font-family:'Space Grotesk',sans-serif}
+  a{text-decoration:none}
+  .see-proj,.cta-btn,.outline-btn,.back-btn{font-family:'Space Grotesk',sans-serif!important;text-decoration:none!important}
+  .see-proj{font-weight:600;font-size:13px}
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:none}}
+  @keyframes cs-pop{0%{opacity:0;transform:scale(.9) translateY(14px)}75%{transform:scale(1.02) translateY(-3px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+  @keyframes rv-up{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+  @keyframes rv-scale{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+  .rv{opacity:0}
+  .rv.on{animation:rv-up .65s cubic-bezier(.2,.7,.2,1) both}
+  .rv.on.from-scale{animation:rv-scale .55s cubic-bezier(.2,.7,.2,1) both}
+  .step-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}
+  .step-card:hover{transform:translateY(-5px);box-shadow:0 22px 52px var(--shadow);border-color:var(--accent-bd)}
+  .sys-card{transition:background .22s,border-color .22s,transform .22s}
+  .sys-card:hover{background:var(--accent-soft);border-color:var(--accent-bd);transform:translateY(-4px)}
+  .impact-card{transition:transform .22s,box-shadow .22s,border-color .22s}
+  .impact-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px var(--shadow);border-color:var(--accent-bd)}
+  .ph{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1.5px dashed var(--accent-bd);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px 24px;color:var(--text3)}
+  .ph-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--accent-bd);display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto}
+  .ph-label{font:600 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;text-transform:uppercase}
+  .ph-desc{font:400 12px/1.5 'JetBrains Mono',monospace;color:var(--text3);max-width:28ch}
+  .back-btn:hover{background:var(--accent-soft) !important;color:var(--accent) !important}
+  .cta-btn{transition:transform .2s,box-shadow .2s}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(0,0,0,0.35)}
+  .outline-btn{transition:background .2s,border-color .2s,color .2s}
+  .outline-btn:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.5)}
+  @media (max-width:1240px){
+    .hero-txt{max-width:46%!important}
+    .hero-collage{right:4vw!important;width:min(50vw,600px)!important}
+  }
+  @media (max-width:1040px){
+    .hero-collage{position:relative!important;right:auto!important;top:auto!important;transform:none!important;width:min(88vw,480px)!important;margin:44px auto 0;order:2}
+    .hero-txt{max-width:100%!important}
+    .hero-sec{min-height:0!important;padding:110px 0 60px!important}
+  }
+  @media (max-width:920px){.proc-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:520px){.proc-grid{grid-template-columns:1fr!important}}
+  @media (max-width:860px){.proc2-grid{grid-template-columns:1fr!important}}
+  @media (max-width:900px){.impact-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:560px){.impact-grid{grid-template-columns:1fr!important}}
+  @media (max-width:760px){.screens-grid{grid-template-columns:1fr!important}}
+  @media (max-width:1100px){.sys-grid{grid-template-columns:repeat(3,1fr)!important}}
+  @media (max-width:760px){.sys-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:680px){.sys-grid{grid-template-columns:1fr!important}}
+  @media (max-width:680px){
+    .back-btn-label{display:none!important}
+    .back-btn{padding:0!important;width:36px;height:36px;justify-content:center}
+    .split-head{grid-template-columns:1fr!important;gap:16px!important}
+    .context-flow{flex-direction:column!important;align-items:stretch!important}
+    .context-flow .step-card{width:100%!important}
+    .context-arrow{transform:rotate(90deg);margin:2px auto!important}
+    .problem-grid{grid-template-columns:1fr!important}
+    .obj-grid{grid-template-columns:1fr!important;gap:28px!important}
+    .sys-grid{gap:36px!important}
+    .sys-grid > div{gap:10px!important}
+    .sys-destacado{text-align:left!important;max-width:100%!important;flex:1 1 auto!important;margin-top:4px!important}
+    .mtabs-nav{display:flex!important;gap:22px;overflow-x:auto;margin-bottom:20px;border-bottom:1px solid var(--hair)}
+    .mtabs-nav::-webkit-scrollbar{display:none}
+    .mtabs-tab{flex:none;background:none;border:none;padding:9px 1px 11px;font:500 13px 'Space Grotesk';color:var(--text3);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+    .mtabs-tab.is-active{color:var(--accent2);border-bottom-color:var(--accent)}
+    .mtabs-panel{display:none!important}
+    .mtabs-panel.is-active{display:block!important}
+    .proc2-grid .mtabs-panel.is-active{display:flex!important}
+  }
+  @media (min-width:681px){
+    .mtabs-nav{display:none!important}
+    .obj-acc .obj-summary{pointer-events:none;cursor:default}
+    .obj-acc .obj-chevron{display:none}
+  }
+  .obj-chevron{flex:none;color:var(--text3);transition:transform .2s;font-size:16px}
+  .obj-chevron svg{display:block}
+  .obj-acc.is-open .obj-chevron{transform:rotate(180deg)}
+  .obj-acc .obj-body{display:none}
+  .obj-acc.is-open .obj-body{display:block}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  #contacto :focus-visible,#cs-footer :focus-visible{outline-color:#fff}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+
+<div id="cs-app" style="--bg:#f4f1fa;--bg2:#ece8f5;--bg3:#e6e1f1;--surface:#ffffff;--text:#1b1726;--text2:#5f5872;--text3:#6b6480;--hair:rgba(27,23,38,0.10);--hair2:rgba(27,23,38,0.18);--accent:#6d4dff;--accent2:#5b3ef0;--accent-soft:rgba(124,92,255,0.12);--accent-bd:rgba(124,92,255,0.30);--nav:rgba(255,255,255,0.82);--glow:rgba(124,92,255,0.14);--shadow:rgba(80,60,140,0.18);--grid-line:rgba(27,23,38,0.045);--grid-dot:rgba(124,92,255,0.22);background:var(--bg);min-height:100vh;font-family:'Space Grotesk',sans-serif;color:var(--text)">
+
+<div id="cs-ring" style="position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid var(--accent-bd);border-radius:50%;pointer-events:none;z-index:9999;transition:width .22s,height .22s,background .22s,border-color .22s;will-change:transform"></div>
+<div id="cs-dot" style="position:fixed;left:0;top:0;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;will-change:transform"></div>
+
+<nav style="position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:6px;padding:8px;background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--hair);border-radius:999px;box-shadow:0 12px 36px var(--shadow)">
+  <a href="index.html" class="back-btn" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;color:var(--text2);font:500 13px 'Space Grotesk';text-decoration:none;transition:background .2s,color .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><polyline points="15 18 9 12 15 6"></polyline></svg><span class="back-btn-label">Volver</span></a>
+  <span style="width:1px;height:18px;background:var(--hair2);margin:0 2px"></span>
+  <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);color:#fff;font:700 13px 'Space Grotesk'">DV</span>
+  <button onClick="{{ toggleTheme }}" title="Cambiar tema" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--hair2);background:transparent;color:var(--text);font-size:15px;cursor:pointer">{{ themeIcon }}</button>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero-sec" style="min-height:auto;display:flex;flex-direction:column;justify-content:center;padding:130px 0 60px;position:relative;overflow:hidden;background:radial-gradient(110% 80% at 70% -8%,var(--glow),transparent 52%),radial-gradient(70% 55% at 0% 110%,var(--glow),transparent 58%),var(--bg2)">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),radial-gradient(circle,var(--grid-dot) 1.3px,transparent 1.8px);background-size:56px 56px,56px 56px,56px 56px;background-position:0 0,0 0,28px 28px;-webkit-mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);pointer-events:none"></div>
+
+  <div class="hero-collage" style="position:absolute;right:4vw;top:50%;transform:translateY(-50%);width:min(52vw,700px);z-index:2">
+    <img alt="Inventory Reliability · vista del dashboard de stock" src="uploads/Group 1171275787.png" style="width:100%;height:auto;display:block;filter:drop-shadow(0 28px 56px var(--shadow));animation:cs-pop .65s .15s cubic-bezier(.34,1.56,.64,1) both">
+  </div>
+
+  <div style="position:relative;z-index:4;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="hero-txt" style="max-width:42%;animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:18px">// caso de estudio · dashboard b2b</div>
+      <h1 style="margin:0 0 22px;font:400 clamp(34px,4.8vw,72px)/1.05 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:var(--text)">Inventory Reliability Dashboard</h1>
+      <p style="margin:0 0 32px;font:400 clamp(14px,1.3vw,17px)/1.7 'Space Grotesk';color:var(--text2)">Dashboard B2B para consultar existencias por SKU en múltiples almacenes conectados a ERP, incorporando indicadores de confiabilidad, estados de sincronización y detalle operativo para tomar decisiones con mayor contexto.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Rol · UX/UI Design</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Plataforma · Web</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Stack · Figma</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--accent-bd);font:500 12px 'JetBrains Mono',monospace;color:var(--accent2)">2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 01 · CONTEXTO ══════════ -->
+<section id="sec-contexto" style="position:relative;margin-top:-28px;padding:100px 0 80px;background:var(--bg);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;margin-bottom:52px">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">01 · CONTEXTO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">El contexto</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">El dashboard permite consultar stock por SKU en múltiples almacenes conectados a ERP. El desafío era sumar visibilidad sobre qué datos estaban actualizados, desactualizados o requerían verificación.</p>
+    </div>
+    <div class="rv from-scale context-flow" style="display:flex;align-items:stretch;gap:10px;padding:4px 0">
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5V16L12 21l-8.5-4.5Z"></path><path d="M3.5 7.5 12 12l8.5-4.5"></path><path d="M12 12v9"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">Datos de inventario</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Stock por SKU en múltiples almacenes</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:11px 12px">
+          <div style="font:400 11px 'Space Grotesk';color:var(--text2);margin-bottom:6px">SKU 10482</div>
+          <div style="font:600 15px 'Space Grotesk';color:var(--text)">Stock: 245 u.</div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a8 8 0 0 1 13-4"></path><path d="M17 3v4h-4"></path><path d="M20 17a8 8 0 0 1-13 4"></path><path d="M7 21v-4h4"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">Conexión ERP</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Sincronización de stock desde sistema externo</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:2px 11px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:9px;height:9px;border-radius:50%;background:#22c55e;flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Última sync · hace 2h</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:9px;height:9px;border-radius:50%;background:#f59e0b;flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Último intento · hace 15m</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0">
+            <span style="width:9px;height:9px;border-radius:50%;background:#3b82f6;flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Origen · ERP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">Estados por almacén</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Estado visible para cada almacén conectado</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:2px 11px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:13px;height:13px;border-radius:50%;border:1.5px solid #22c55e;background:rgba(34,197,94,0.18);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Actualizado</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:13px;height:13px;border-radius:50%;border:1.5px solid #f59e0b;background:rgba(245,158,11,0.18);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Desactualizado</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0">
+            <span style="width:13px;height:13px;border-radius:50%;border:1.5px solid #ef4444;background:rgba(239,68,68,0.18);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Error de sync</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M20 20l-4.8-4.8"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">Consulta operativa</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Revisión de stock con contexto de confiabilidad</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:2px 11px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="font-size:13px;color:#8b5cf6">★</span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Revisar SKU</span>
+            <span style="font:400 12px 'Space Grotesk';color:var(--text3)">›</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="font-size:13px;color:#f59e0b">◆</span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Comparar almacenes</span>
+            <span style="font:400 12px 'Space Grotesk';color:var(--text3)">›</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0">
+            <span style="font-size:13px;color:#3b82f6">▲</span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Ver detalle</span>
+            <span style="font:400 12px 'Space Grotesk';color:var(--text3)">›</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.2 7.6-7 9-3.8-1.4-7-4-7-9V6Z"></path><path d="M9 12l2.2 2.2L15.5 9.5"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">Decisión con contexto</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Menos riesgo al operar con datos sensibles</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:11px 12px">
+          <div style="font:400 11px 'Space Grotesk';color:var(--text2);margin-bottom:6px">Dato verificado</div>
+          <div style="font:600 15px 'Space Grotesk';color:var(--text)">Sync visible</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 · PROBLEMA ══════════ -->
+<section id="sec-problema" style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">02 · PROBLEMA</div>
+      <h2 style="margin:0 0 16px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text);max-width:26ch">El problema no era ver stock, sino saber si era confiable.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">Los usuarios veían existencias por SKU, pero no señales claras sobre qué tan actualizado estaba cada almacén, lo que podía llevar a decisiones basadas en datos poco confiables.</p>
+    </div>
+    <div class="problem-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Falta de visibilidad</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">No era claro qué almacenes estaban actualizados y cuáles requerían verificación.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Datos desactualizados</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">El stock podía mostrarse disponible aunque la última sincronización no fuera reciente.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Errores de sincronización</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Las fallas del ERP no siempre quedaban expuestas en el momento de consulta.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Decisiones con riesgo</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">El equipo podía comprometer stock sin saber si el dato seguía siendo confiable.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Demasiada lectura manual</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">El usuario debía interpretar información operativa sin señales visuales suficientes.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Falta de detalle accionable</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">No había una forma rápida de entender cuándo y cómo se había actualizado cada almacén.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 · OBJETIVO ══════════ -->
+<section id="sec-objetivo" style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;margin-bottom:48px">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">03 · OBJETIVO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Qué buscaba resolver</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">Necesitaba diseñar una mejora para un dashboard operativo que hiciera visible la confiabilidad del stock por almacén, sin romper la lógica de consulta existente.</p>
+    </div>
+    <div class="obj-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">01 · VISIBILIZAR</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Estados claros por almacén</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Mostrar rápidamente qué datos estaban actualizados, desactualizados o con error.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent-bd);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">02 · CONTEXTUALIZAR</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Stock con información de respaldo</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Sumar última actualización, último intento y detalle de sincronización cuando fuera necesario.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent-bd);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">03 · MANTENER</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">La tabla como base operativa</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Enriquecer la experiencia existente sin reemplazar el modo principal de consulta.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--hair2);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">04 · REDUCIR RIESGO</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Decisiones más confiables</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Ayudar a evitar acciones basadas en datos incompletos o desactualizados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 · PROCESO ══════════ -->
+<section id="sec-proceso" style="padding:70px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">04 · PROCESO</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Cómo lo resolví</h2>
+    </div>
+    <div class="proc-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px">
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px"><div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">01</div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Lógica operativa</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Entendí cómo se consultaba stock por SKU y almacén.</div></div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px"><div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">02</div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Estados críticos</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Definí actualizado, desactualizado y error.</div></div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px"><div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">03</div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Señales visibles</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Sumé indicadores en encabezados de tabla.</div></div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px"><div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">04</div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Detalle progresivo</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Diseñé un drawer con metadata por almacén.</div></div>
+      <div class="rv step-card" style="background:linear-gradient(135deg,var(--accent-soft),transparent);border:1px solid var(--accent-bd);border-radius:14px;padding:22px 20px"><div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">05</div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Handoff y QA</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Documenté criterios de aceptación y pruebas.</div></div>
+    </div>
+    <div class="mtabs">
+      <div class="mtabs-nav">
+        <button type="button" class="mtabs-tab is-active" data-tab-target="1">Arquitectura</button>
+        <button type="button" class="mtabs-tab" data-tab-target="2">Flujo clave</button>
+      </div>
+    <div class="proc2-grid mtabs-body" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;margin-top:18px">
+      <div class="rv step-card mtabs-panel is-active" data-tab="1" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font:600 15px 'Space Grotesk';color:var(--text)">Arquitectura</span>
+        </div>
+        <div style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:11px;background:var(--accent-soft);border:1px solid var(--accent-bd)">
+          <span style="font:600 12px 'Space Grotesk';color:var(--accent)">Dashboard</span>
+          <span style="font:400 10px 'JetBrains Mono',monospace;color:var(--accent2)">punto de entrada</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px;padding-left:14px;border-left:1px solid var(--accent-bd)">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Tabla de inventario</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Consulta central por SKU y almacén.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Estados por almacén</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Actualizado · Desactualizado · Error</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Alerta contextual</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Visible cuando hay datos que requieren verificación.</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Drawer de detalle</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Metadata, último intento e historial de sincronización.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rv step-card mtabs-panel" data-tab="2" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font:600 15px 'Space Grotesk';color:var(--text)">Flujo clave</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px">
+          <span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Consultar stock</span>
+          <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span>
+          <span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Detectar estado</span>
+          <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span>
+          <span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Ver detalle</span>
+          <span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span>
+          <span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Tomar decisión</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 · SISTEMA ══════════ -->
+<section id="sec-sistema" style="padding:70px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">05 · SISTEMA DISEÑADO</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">El sistema que diseñé</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:58ch">Sumé una capa de confiabilidad sobre la tabla existente para interpretar el stock con más contexto.</p>
+    </div>
+    <div class="sys-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px">
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Tabla</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Stock por SKU y almacén.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Estados</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Actualizado · Desactualizado · Error.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Alerta</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Aviso cuando hay datos a verificar.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Drawer</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Detalle de sincronización por almacén.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Reglas</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Estados visibles sin ocultar stock.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 · PANTALLAS ══════════ -->
+<section id="sec-pantallas" style="position:relative;margin-top:-48px;padding:80px 0;background:var(--bg2);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">06 · SOLUCIÓN VISUAL</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Las pantallas del dashboard</h2>
+    </div>
+    <div class="screens-grid" style="display:grid;grid-template-columns:1fr;gap:20px">
+      <div class="rv" style="border-radius:20px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 10px 30px var(--shadow)"><img loading="lazy" src="uploads/inventario.png" alt="Tabla de inventario con estados por almacén" style="width:100%;height:auto;display:block;object-fit:contain"></div>
+      <div class="rv" style="border-radius:20px;overflow:hidden;border:1px solid var(--hair);box-shadow:0 10px 30px var(--shadow)"><img loading="lazy" src="uploads/drawer.png" alt="Drawer de detalle de sincronización por almacén" style="width:100%;height:auto;display:block;object-fit:contain"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 · IMPACTO ══════════ -->
+<section id="sec-impacto" style="padding:70px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">07 · IMPACTO</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Resultados</h2>
+    </div>
+    <div class="impact-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px">
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Mayor visibilidad</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">El estado de cada almacén quedó visible en la consulta principal.</div></div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Menos incertidumbre</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">El usuario pudo distinguir datos actualizados, desactualizados o con error.</div></div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Decisiones con contexto</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">El stock dejó de leerse como un dato aislado y pasó a incluir confiabilidad.</div></div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Mejor handoff</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">Las reglas de estados e interacción quedaron documentadas para desarrollo y QA.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 · ROL Y EQUIPO ══════════ -->
+<section id="sec-equipo" style="padding:70px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">08 · ROL Y EQUIPO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Rol y equipo</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px 'Space Grotesk';flex:0 0 auto">DV</div><div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Daiana de la Vega</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Product Designer</div></div></div>
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px"><div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">BIZ</div><div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Stakeholders</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Definición funcional · validación</div></div></div>
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px"><div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">DEV</div><div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Equipo de desarrollo</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Implementación · factibilidad técnica</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 09 · FINAL ══════════ -->
+<section id="cs-footer" style="position:relative;margin-top:-48px;min-height:56vh;background:#6d4dff;border-radius:40px 40px 0 0;box-shadow:0 -34px 70px rgba(80,60,140,0.24);border-top:1px solid rgba(255,255,255,0.12);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:100px 0 0">
+  <div style="position:absolute;left:50%;top:30%;width:700px;height:480px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(255,255,255,0.12),transparent 62%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw 80px;display:flex;flex-direction:column;gap:30px">
+    <div class="rv" style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">// más trabajo</div>
+    <h2 class="rv" style="margin:0;font:400 clamp(40px,6vw,96px)/1.0 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:#fff;max-width:16ch">¿Tenés un proyecto en mente? <span style="color:#e7dfff;font-style:italic">Hablemos.</span></h2>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="index.html#contacto" class="cta-btn" style="display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;background:#fff;color:#4b2bd6;font:600 15px 'Space Grotesk';text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)">Contactame</a>
+      <a href="index.html#proyectos" class="outline-btn" style="display:inline-flex;align-items:center;gap:8px;padding:16px 24px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);color:#fff;font:600 14px 'Space Grotesk';text-decoration:none">Ver todo el portfolio</a>
+    </div>
+    <a href="web-ui-marcas.html" class="rv" style="display:flex;flex-direction:column;gap:10px;align-self:flex-start;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.22);color:#fff;text-decoration:none" style-hover="opacity:.85">
+      <span style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">SIGUIENTE PROYECTO →</span>
+      <span style="font:400 clamp(28px,3.4vw,48px)/1.05 'Instrument Serif',Georgia,serif;letter-spacing:-0.5px">Web UI para marcas digitales</span>
+    </a>
+  </div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:40px 4vw 20px;border-top:1px solid rgba(255,255,255,0.15);display:flex;justify-content:space-between;font:400 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.4)">
+    <span>© 2026 Daiana de la Vega</span>
+    <span>Inventory Reliability Dashboard · Caso de estudio</span>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { theme: 'light' };
+
+  applyTheme(t) {
+    const app = document.getElementById('cs-app'); if (!app) return;
+    const D = {
+      '--bg':'#0c0a12','--bg2':'#14111c','--bg3':'#0a0810','--surface':'#1a1622',
+      '--text':'#f1eff7','--text2':'#9b95ab','--text3':'#8a8399',
+      '--hair':'rgba(255,255,255,0.08)','--hair2':'rgba(255,255,255,0.16)',
+      '--accent':'#8a63ff','--accent2':'#a78bff',
+      '--accent-soft':'rgba(138,99,255,0.16)','--accent-bd':'rgba(138,99,255,0.3)',
+      '--nav':'rgba(23,19,31,0.82)','--glow':'rgba(138,99,255,0.18)','--shadow':'rgba(0,0,0,0.5)',
+      '--grid-line':'rgba(255,255,255,0.045)','--grid-dot':'rgba(138,99,255,0.30)'
+    };
+    const L = {
+      '--bg':'#f4f1fa','--bg2':'#ece8f5','--bg3':'#e6e1f1','--surface':'#ffffff',
+      '--text':'#1b1726','--text2':'#5f5872','--text3':'#6b6480',
+      '--hair':'rgba(27,23,38,0.10)','--hair2':'rgba(27,23,38,0.18)',
+      '--accent':'#6d4dff','--accent2':'#5b3ef0',
+      '--accent-soft':'rgba(124,92,255,0.12)','--accent-bd':'rgba(124,92,255,0.30)',
+      '--nav':'rgba(255,255,255,0.82)','--glow':'rgba(124,92,255,0.14)','--shadow':'rgba(80,60,140,0.18)',
+      '--grid-line':'rgba(27,23,38,0.045)','--grid-dot':'rgba(124,92,255,0.22)'
+    };
+    const v = t === 'dark' ? D : L;
+    for (const k in v) app.style.setProperty(k, v[k]);
+    try { document.body.style.background = v['--bg']; localStorage.setItem('dv-theme', t); } catch(e) {}
+    if (this.state.theme !== t) this.setState({ theme: t });
+  }
+
+  componentDidMount() {
+    let saved = 'light';
+    try { saved = localStorage.getItem('dv-theme') || 'light'; } catch(e) {}
+    this.applyTheme(saved);
+
+    const fine = window.matchMedia('(pointer:fine)').matches;
+    const dot = document.getElementById('cs-dot'), ring = document.getElementById('cs-ring');
+    if (fine && dot && ring) {
+      window.addEventListener('mousemove',()=>{ document.documentElement.style.cursor='none'; },{once:true});
+      let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+      window.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+      });
+      const loop = () => {
+        rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+        this._raf = requestAnimationFrame(loop);
+      };
+      loop();
+      const grow = () => { ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='var(--accent)'; ring.style.background='var(--accent-soft)'; };
+      const shrink = () => { ring.style.width='30px'; ring.style.height='30px'; ring.style.borderColor='var(--accent-bd)'; ring.style.background='transparent'; };
+      document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter', grow); el.addEventListener('mouseleave', shrink); });
+      const footer = document.getElementById('cs-footer');
+      if (footer) {
+        footer.addEventListener('mouseenter', () => { dot.style.background = '#fff'; ring.style.borderColor = 'rgba(255,255,255,0.55)'; });
+        footer.addEventListener('mouseleave', () => { dot.style.background = 'var(--accent)'; ring.style.borderColor = 'var(--accent-bd)'; });
+      }
+    } else if (dot && ring) { dot.style.display='none'; ring.style.display='none'; }
+
+    const reveals = [...document.querySelectorAll('.rv:not(.on)')];
+    let pending = new Set(reveals);
+    const check = () => {
+      const h = window.innerHeight;
+      const visible = [...pending].filter(el => {
+        const r = el.getBoundingClientRect();
+        return r.top < h * 0.92 && r.bottom > 0;
+      });
+      if (!visible.length) return;
+      visible.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      let lastRowTop = -999, rowCount = 0;
+      visible.forEach(el => {
+        const top = Math.round(el.getBoundingClientRect().top / 60);
+        if (top !== lastRowTop) { lastRowTop = top; rowCount = 0; } else { rowCount++; }
+        el.style.animationDelay = (rowCount * 80) + 'ms';
+        el.classList.add('on');
+        pending.delete(el);
+      });
+    };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+    setTimeout(check, 300);
+    this._failsafe = setTimeout(() => {
+      pending.forEach(el => { el.style.animationDelay = '0ms'; el.classList.add('on'); });
+    }, 9000);
+
+    const syncObjAcc = () => {
+      const desktop = window.matchMedia('(min-width:681px)').matches;
+      document.querySelectorAll('.obj-acc').forEach(d => { d.classList.toggle('is-open', desktop); });
+    };
+    syncObjAcc();
+    window.addEventListener('resize', syncObjAcc, { passive: true });
+    document.querySelectorAll('.obj-acc .obj-summary').forEach(s => {
+      s.addEventListener('click', () => { s.closest('.obj-acc').classList.toggle('is-open'); });
+    });
+
+    document.querySelectorAll('.mtabs').forEach(group => {
+      const tabs = [...group.querySelectorAll('.mtabs-tab')];
+      const panels = [...group.querySelectorAll('.mtabs-panel')];
+      tabs.forEach(tab => tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab-target');
+        tabs.forEach(t => t.classList.toggle('is-active', t === tab));
+        panels.forEach(p => p.classList.toggle('is-active', p.getAttribute('data-tab') === target));
+      }));
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    document.documentElement.style.cursor = '';
+  }
+
+  renderVals() {
+    return {
+      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+      toggleTheme: () => this.applyTheme(this.state.theme === 'dark' ? 'light' : 'dark'),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

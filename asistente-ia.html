@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistente IA para Comité Directivo · Caso de estudio | Dai de la Vega</title>
+<meta name="description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: app mobile para consultar la documentación corporativa con IA.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dai de la Vega">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Asistente IA para Comité Directivo · Caso de estudio | Dai de la Vega">
+<meta property="og:description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: app mobile para consultar la documentación corporativa con IA.">
+<meta property="og:url" content="https://daidelavega.com/asistente-ia">
+<link rel="canonical" href="https://daidelavega.com/asistente-ia">
+<meta name="twitter:card" content="summary">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#f4f1fa}
+  *{box-sizing:border-box}
+  body,#app,#cs-app{font-family:'Space Grotesk',sans-serif}
+  a,button,input,select,textarea{font-family:'Space Grotesk',sans-serif}
+  a{text-decoration:none}
+  .see-proj,.cta-btn,.outline-btn,.back-btn{font-family:'Space Grotesk',sans-serif!important;text-decoration:none!important}
+  .see-proj{font-weight:600;font-size:13px}
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:none}}
+  @keyframes guarda-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  .guarda-float{animation:guarda-float 5.5s ease-in-out infinite}
+  @keyframes cs-pop{0%{opacity:0;transform:scale(.82) translateY(14px)}75%{transform:scale(1.03) translateY(-3px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+  @keyframes rv-up{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+  @keyframes rv-scale{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+  .rv{opacity:0}
+  .rv.on{animation:rv-up .65s cubic-bezier(.2,.7,.2,1) both}
+  .rv.on.from-scale{animation:rv-scale .55s cubic-bezier(.2,.7,.2,1) both}
+  .step-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}
+  .step-card:hover{transform:translateY(-5px);box-shadow:0 22px 52px var(--shadow);border-color:var(--accent-bd)}
+  @media (max-width:920px){.proc-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:520px){.proc-grid{grid-template-columns:1fr!important}}
+  @media (max-width:860px){.proc2-grid{grid-template-columns:1fr!important}}
+  @media (max-width:760px){.wf-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:420px){.wf-grid{grid-template-columns:1fr!important}}
+  @media (max-width:640px){
+    .guarda-dark{grid-template-columns:repeat(2,1fr)!important}
+  }
+  @media (max-width:1100px){.sys-grid{grid-template-columns:repeat(3,1fr)!important}}
+  @media (max-width:760px){.sys-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:680px){.sys-grid{grid-template-columns:1fr!important}}
+  .sys-card{transition:background .22s,border-color .22s,transform .22s}
+  .sys-card:hover{background:var(--accent-soft);border-color:var(--accent-bd);transform:translateY(-4px)}
+  .impact-card{transition:transform .22s,box-shadow .22s,border-color .22s}
+  .impact-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px var(--shadow);border-color:var(--accent-bd)}
+  .ph{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1.5px dashed var(--accent-bd);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px 24px;color:var(--text3)}
+  .ph-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--accent-bd);display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto}
+  .ph-label{font:600 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;text-transform:uppercase}
+  .ph-desc{font:400 12px/1.5 'JetBrains Mono',monospace;color:var(--text3);max-width:28ch}
+  .back-btn:hover{background:var(--accent-soft) !important;color:var(--accent) !important}
+  .cta-btn{transition:transform .2s,box-shadow .2s}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(0,0,0,0.35)}
+  .outline-btn{transition:background .2s,border-color .2s,color .2s}
+  .outline-btn:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.5)}
+  @keyframes cs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .cs-proto-fab{position:fixed;right:28px;bottom:28px;z-index:900;display:inline-flex;align-items:center;justify-content:center;gap:0;width:52px;height:52px;padding:0;border-radius:999px;background:var(--accent);color:#fff;text-decoration:none;box-shadow:0 10px 28px var(--shadow);overflow:hidden;white-space:nowrap;animation:cs-float 2.8s ease-in-out infinite;transition:box-shadow .25s,transform .25s,width .3s cubic-bezier(.2,.8,.2,1)}
+  .cs-proto-fab:hover{box-shadow:0 16px 40px var(--shadow);transform:translateY(-3px);animation-play-state:paused;width:162px;gap:8px}
+  .cs-proto-fab span{display:inline-block;max-width:0;opacity:0;overflow:hidden;transition:max-width .3s cubic-bezier(.2,.8,.2,1) .05s,opacity .22s ease .08s}
+  .cs-proto-fab:hover span{max-width:100px;opacity:1}
+  @media (max-width:1240px){
+    .hero-txt{max-width:52%!important}
+    .hero-collage{right:0!important;width:min(44vw,520px)!important}
+  }
+  @media (max-width:1040px){
+    .hero-collage{position:relative!important;right:auto!important;top:auto!important;transform:none!important;width:min(88vw,520px)!important;margin:44px auto 0;order:2}
+    .hero-txt{max-width:100%!important}
+    .hero-sec{min-height:0!important;padding:110px 0 60px!important}
+  }
+  @media (max-width:680px){
+    img{border-radius:10px!important}
+    .back-btn-label{display:none!important}
+    .back-btn{padding:0!important;width:36px;height:36px;justify-content:center}
+    .split-head{grid-template-columns:1fr!important;gap:16px!important}
+    .context-flow{flex-direction:column!important;align-items:stretch!important}
+    .context-flow .step-card{width:100%!important}
+    .context-arrow{transform:rotate(90deg);margin:2px auto!important}
+    .problem-grid{grid-template-columns:1fr!important}
+    .obj-grid{grid-template-columns:1fr!important;gap:28px!important}
+    .impact-grid{grid-template-columns:1fr!important}
+    .sys-grid{gap:36px!important}
+    .sys-grid > div{gap:10px!important}
+    .sys-destacado{text-align:left!important;max-width:100%!important;flex:1 1 auto!important;margin-top:4px!important}
+    .carousel-mobile{display:flex!important;overflow-x:auto!important;scroll-snap-type:x mandatory;gap:14px!important;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+    .carousel-mobile::-webkit-scrollbar{display:none}
+    .carousel-mobile > *{flex:0 0 82%!important;scroll-snap-align:start}
+    .bloque-head{flex-direction:column!important;align-items:flex-start!important;gap:4px!important}
+    .proto-frame{aspect-ratio:auto!important;height:80vh!important;max-height:720px!important}
+    .mtabs-nav{display:flex!important;gap:22px;overflow-x:auto;margin-bottom:20px;border-bottom:1px solid var(--hair)}
+    .mtabs-nav::-webkit-scrollbar{display:none}
+    .mtabs-tab{flex:none;background:none;border:none;padding:9px 1px 11px;font:500 13px 'Space Grotesk';color:var(--text3);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+    .mtabs-tab.is-active{color:var(--accent2);border-bottom-color:var(--accent)}
+    .mtabs-panel{display:none!important}
+    .mtabs-panel.is-active{display:block!important}
+    .proc2-grid .mtabs-panel.is-active{display:flex!important}
+    #cs-footer{padding-bottom:70px!important}
+    .mobile-toc{display:flex!important}
+  }
+  @media (min-width:681px){
+    .mtabs-nav{display:none!important}
+  }
+  .mobile-toc{display:none;position:fixed;left:0;right:0;bottom:0;z-index:900;justify-content:space-between;gap:2px;padding:8px 3vw calc(8px + env(safe-area-inset-bottom));background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--hair)}
+  .mobile-toc a{flex:1;text-align:center;padding:7px 2px;border-radius:10px;font:600 12px 'JetBrains Mono',monospace;color:var(--text2);text-decoration:none}
+  .mobile-toc a.is-active{color:var(--accent);background:var(--accent-soft)}
+  .obj-chevron{flex:none;color:var(--text3);transition:transform .2s;font-size:16px}
+  .obj-acc.is-open .obj-chevron{transform:rotate(180deg)}
+  .obj-acc .obj-body{display:none}
+  .obj-acc.is-open .obj-body{display:block}
+  @media (min-width:681px){
+    .obj-acc .obj-summary{pointer-events:none;cursor:default}
+    .obj-acc .obj-chevron{display:none}
+  }
+  .car-arrows{display:none}
+  @media (max-width:680px){
+    .car-arrows{display:flex!important;justify-content:space-between;position:absolute;top:50%;left:2px;right:2px;transform:translateY(-50%);pointer-events:none;z-index:2}
+    .car-arrow{pointer-events:auto;width:32px;height:32px;border-radius:50%;background:var(--nav);border:1px solid var(--hair);color:var(--text2);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px var(--shadow);padding:0}
+    .cs-sec{padding-top:48px!important;padding-bottom:48px!important}
+    .cs-sec-overlap{margin-top:-16px!important}
+  }
+  .obj-chevron svg{display:block}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  #contacto :focus-visible,#cs-footer :focus-visible{outline-color:#fff}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+
+<div id="cs-app" style="--bg:#f4f1fa;--bg2:#ece8f5;--bg3:#e6e1f1;--surface:#ffffff;--text:#1b1726;--text2:#5f5872;--text3:#6b6480;--hair:rgba(27,23,38,0.10);--hair2:rgba(27,23,38,0.18);--accent:#6d4dff;--accent2:#5b3ef0;--accent-soft:rgba(124,92,255,0.12);--accent-bd:rgba(124,92,255,0.30);--nav:rgba(255,255,255,0.82);--glow:rgba(124,92,255,0.14);--shadow:rgba(80,60,140,0.18);--grid-line:rgba(27,23,38,0.045);--grid-dot:rgba(124,92,255,0.22);background:var(--bg);min-height:100vh;font-family:'Space Grotesk',sans-serif;color:var(--text)">
+
+<!-- cursor -->
+<div id="cs-ring" style="position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid var(--accent-bd);border-radius:50%;pointer-events:none;z-index:9999;transition:width .22s,height .22s,background .22s,border-color .22s;will-change:transform"></div>
+<div id="cs-dot" style="position:fixed;left:0;top:0;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;will-change:transform"></div>
+
+<!-- NAV -->
+<nav style="position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:6px;padding:8px;background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--hair);border-radius:999px;box-shadow:0 12px 36px var(--shadow)">
+  <a href="index.html" class="back-btn" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;color:var(--text2);font:500 13px 'Space Grotesk';text-decoration:none;transition:background .2s,color .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><polyline points="15 18 9 12 15 6"></polyline></svg><span class="back-btn-label">Volver</span></a>
+  <span style="width:1px;height:18px;background:var(--hair2);margin:0 2px"></span>
+  <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);color:#fff;font:700 13px 'Space Grotesk'">DV</span>
+  <button onClick="{{ toggleTheme }}" title="Cambiar tema" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--hair2);background:transparent;color:var(--text);font-size:15px;cursor:pointer">{{ themeIcon }}</button>
+</nav>
+
+<a href="#prototipo" class="cs-proto-fab" title="Ver prototipo">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+  <span style="font:600 13px 'Space Grotesk'">Ver prototipo</span>
+</a>
+
+<nav class="mobile-toc">
+  <a href="#sec-contexto">01</a>
+  <a href="#sec-problema">02</a>
+  <a href="#sec-objetivo">03</a>
+  <a href="#sec-proceso">04</a>
+  <a href="#sec-sistema">05</a>
+  <a href="#sec-pantallas">06</a>
+  <a href="#sec-impacto">08</a>
+  <a href="#prototipo">10</a>
+</nav>
+
+<!-- ══════════ 01 · HERO ══════════ -->
+<section class="hero-sec" style="min-height:auto;display:flex;flex-direction:column;justify-content:center;padding:56px 0 50px;position:relative;overflow:hidden;background:radial-gradient(110% 80% at 70% -8%,var(--glow),transparent 52%),radial-gradient(70% 55% at 0% 110%,var(--glow),transparent 58%),var(--bg2)">
+
+  <!-- grid + dots (igual al home) -->
+  <div style="position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),radial-gradient(circle,var(--grid-dot) 1.3px,transparent 1.8px);background-size:56px 56px,56px 56px,56px 56px;background-position:0 0,0 0,28px 28px;-webkit-mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);pointer-events:none"></div>
+
+  <!-- composición: 2 phones + 3 cards apiladas a la derecha -->
+  <div class="hero-collage" style="position:absolute;right:1vw;top:50%;transform:translateY(-50%);width:min(45vw,660px);aspect-ratio:500/390;pointer-events:none;z-index:2">
+    <!-- phone 2 — izquierda -->
+    <img alt="Asistente IA · pantalla de conversación" src="uploads/header 2-fd0014a7.png" style="position:absolute;left:0;top:10.8%;height:77%;border-radius:24px;box-shadow:0 24px 60px var(--shadow);animation:cs-pop .6s .38s cubic-bezier(.34,1.56,.64,1) both;z-index:2">
+    <!-- phone 1 — principal, ligeramente encima -->
+    <img alt="Asistente IA · pantalla principal" src="uploads/header1.png" style="position:absolute;left:25.2%;top:4.6%;height:92.3%;border-radius:28px;box-shadow:0 32px 72px var(--shadow);animation:cs-pop .65s .15s cubic-bezier(.34,1.56,.64,1) both;z-index:3">
+  </div>
+
+  <!-- texto — contenido en 50% izquierdo -->
+  <div style="position:relative;z-index:4;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="hero-txt" style="max-width:50%;animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:18px">// caso de estudio · app mobile</div>
+      <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text3);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">Asistente para Comité Directivo</div>
+      <h1 style="margin:0 0 22px;font:400 clamp(36px,5.2vw,80px)/1.0 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:var(--text)">Asistente ejecutivo con IA</h1>
+      <p style="margin:0 0 32px;font:400 clamp(14px,1.3vw,17px)/1.7 'Space Grotesk';color:var(--text2)">Producto mobile B2B para consultar documentación corporativa y obtener respuestas contextualizadas mediante IA conversacional.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Rol · Product Designer / UX/UI</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Plataforma · Mobile</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Stack · Figma + React Native Paper / Material 3</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--accent-bd);font:500 12px 'JetBrains Mono',monospace;color:var(--accent2)">2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 01 · CONTEXTO ══════════ -->
+<section id="sec-contexto" class="cs-sec cs-sec-overlap" style="position:relative;z-index:6;margin-top:-28px;padding:100px 0 80px;background:var(--bg);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;margin-bottom:52px">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">01 · CONTEXTO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">El contexto</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">El producto fue diseñado para un Comité Directivo que necesitaba consultar información corporativa de forma rápida y centralizada. El desafío era transformar documentación extensa en respuestas claras y contextualizadas mediante IA conversacional.</p>
+    </div>
+    <div class="rv from-scale context-flow" style="display:flex;align-items:stretch;gap:10px;padding:4px 0">
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"><path d="M7 3h7l4 4v13a1 1 0 01-1 1H7a1 1 0 01-1-1V4a1 1 0 011-1z"></path><path d="M14 3v4h4"></path><path d="M9 11h6M9 14h6M9 17h3"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">01 · Documentación</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Información corporativa disponible y centralizada</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:2px 11px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:16px;height:16px;border-radius:4px;background:var(--accent-soft);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11px/1.25 'Space Grotesk';color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Informe_operativo_anual</span>
+            <span style="font:500 9px 'JetBrains Mono',monospace;color:var(--text3)">PDF</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:16px;height:16px;border-radius:4px;background:var(--accent-soft);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11px/1.25 'Space Grotesk';color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Plan_estratégico_2027</span>
+            <span style="font:500 9px 'JetBrains Mono',monospace;color:var(--text3)">PDF</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0">
+            <span style="width:16px;height:16px;border-radius:4px;background:var(--accent-soft);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11px/1.25 'Space Grotesk';color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Métricas_Q1</span>
+            <span style="font:500 9px 'JetBrains Mono',monospace;color:var(--text3)">XLS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"><path d="M4 5h16L14 13v6l-4 2v-8z"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">02 · Definir fuente</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">El ejecutivo selecciona qué información quiere consultar</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:2px 11px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:13px;height:13px;border-radius:4px;border:1.5px solid var(--accent);background:var(--accent);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text)">Todos los documentos</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--hair)">
+            <span style="width:13px;height:13px;border-radius:4px;border:1.5px solid var(--hair2);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text2)">Solo aprobados</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:7px 0">
+            <span style="width:13px;height:13px;border-radius:4px;border:1.5px solid var(--hair2);flex:0 0 auto"></span>
+            <span style="flex:1;font:400 11.5px/1.25 'Space Grotesk';color:var(--text2)">Informe operativo anual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"><path d="M4 5h16v10H10l-4 4V5z"></path><path d="M8 9h8M8 12h5"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">03 · Consultar</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Realiza una pregunta en lenguaje natural</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:11px 12px;display:flex;flex-direction:column;gap:9px">
+          <div style="font:400 11px 'Space Grotesk';color:var(--text2)">Sugeridas</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--hair);font:400 10.5px 'Space Grotesk';color:var(--text2)">Crecimiento Q1</span>
+            <span style="padding:5px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--hair);font:400 10.5px 'Space Grotesk';color:var(--text2)">Nuevos mercados</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--hair);border-radius:999px;padding:9px 8px 9px 13px">
+            <span style="flex:1;font:400 11px/1.3 'Space Grotesk';color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">¿Cuál fue el crecimiento en Q1?</span>
+            <span style="width:22px;height:22px;border-radius:50%;background:var(--accent);flex:0 0 auto;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"><path d="M12 3v5M12 16v5M3 12h5M16 12h5"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">04 · IA + contexto</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">La IA procesa la consulta utilizando las fuentes seleccionadas</div>
+        <div style="margin-top:auto;width:100%;display:flex;flex-direction:column;align-items:center;gap:6px">
+          <div style="display:flex;gap:5px">
+            <span style="padding:4px 8px;border-radius:7px;background:var(--surface);border:1px solid var(--hair);font:400 9.5px 'JetBrains Mono',monospace;color:var(--text3)">Informe.pdf</span>
+            <span style="padding:4px 8px;border-radius:7px;background:var(--surface);border:1px solid var(--hair);font:400 9.5px 'JetBrains Mono',monospace;color:var(--text3)">Plan.pdf</span>
+          </div>
+          <svg width="10" height="10" viewBox="0 0 22 14" fill="none" stroke="var(--accent-bd)" stroke-width="1.6" stroke-linecap="round" style="transform:rotate(90deg)"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg>
+          <div style="display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--accent-bd)">
+            <span style="font:500 10px 'JetBrains Mono',monospace;color:var(--accent2)">IA analizando</span>
+            <span style="display:flex;gap:2px"><span style="width:4px;height:4px;border-radius:50%;background:var(--accent)"></span><span style="width:4px;height:4px;border-radius:50%;background:var(--accent)"></span><span style="width:4px;height:4px;border-radius:50%;background:var(--accent)"></span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="context-arrow" style="display:flex;align-items:center;color:var(--accent2);flex:0 0 auto"><svg width="18" height="12" viewBox="0 0 22 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1 7h19"></path><path d="M15 2l5 5-5 5"></path></svg></div>
+
+      <div class="step-card" style="flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:20px 14px;display:flex;flex-direction:column;align-items:center;gap:9px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="width:44px;height:44px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"><path d="M4 5h16v10H10l-4 4V5z"></path><path d="M8.5 10l1.8 1.8L15.5 8"></path></svg>
+        </div>
+        <div style="font:600 11px/1.3 'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.6px;text-align:center;text-transform:uppercase">05 · Respuesta</div>
+        <div style="width:26px;height:2px;background:var(--accent-bd)"></div>
+        <div style="font:400 12px/1.5 'Space Grotesk';color:var(--text2);text-align:center">Obtiene una respuesta contextualizada y puede revisar las fuentes</div>
+        <div style="margin-top:auto;width:100%;background:var(--bg2);border:1px solid var(--hair);border-radius:11px;padding:11px 12px;display:flex;flex-direction:column;gap:7px">
+          <div style="height:7px;width:92%;border-radius:4px;background:var(--hair2)"></div>
+          <div style="height:7px;width:68%;border-radius:4px;background:var(--hair2)"></div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:4px;padding-top:8px;border-top:1px solid var(--hair)">
+            <span style="font:500 9.5px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:.5px">FUENTE</span>
+            <span style="font:400 10.5px 'Space Grotesk';color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Informe_operativo · pág. 12</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 02 · PROBLEMA ══════════ -->
+<section id="sec-problema" class="cs-sec" style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">02 · PROBLEMA</div>
+      <h2 style="margin:0 0 16px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text);max-width:26ch">La información estaba disponible, pero acceder a ella seguía siendo lento.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">La documentación corporativa crecía, pero acceder a información relevante seguía requiriendo tiempo y esfuerzo.</p>
+    </div>
+    <div class="problem-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:48px">
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Información dispersa</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">La información relevante estaba distribuida entre múltiples documentos.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Búsqueda poco eficiente</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Encontrar un dato específico implicaba localizar y revisar manualmente los archivos.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Documentos extensos</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">El volumen de contenido dificultaba acceder rápidamente a información puntual.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Alta carga cognitiva</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">El usuario debía buscar, leer e interpretar la información antes de poder utilizarla.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Necesidad de contexto</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Una respuesta debía poder relacionarse claramente con la documentación consultada.</div></div>
+      </div>
+      <div class="rv" style="padding:20px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:14px;display:flex;align-items:flex-start;gap:14px;transition:border-color .22s,transform .22s" style-hover="border-color:var(--accent-bd);transform:translateY(-3px)">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:8px;flex:0 0 auto"></div>
+        <div><div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:4px">Uso ejecutivo y mobile</div><div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">La experiencia debía permitir consultas rápidas, claras y de baja fricción desde dispositivos móviles.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 · OBJETIVO ══════════ -->
+<section id="sec-objetivo" class="cs-sec" style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;margin-bottom:48px">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">03 · OBJETIVO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Qué buscaba resolver</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">Necesitaba diseñar una experiencia mobile que permitiera consultar información corporativa de forma rápida, clara y contextualizada mediante IA.</p>
+    </div>
+    <div class="obj-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:48px">
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">01 · SIMPLIFICAR</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Acceso rápido</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Reducir el esfuerzo necesario para encontrar información relevante.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent-bd);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">02 · CONTEXTUALIZAR</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Fuentes claras</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Permitir definir sobre qué documentación realizar cada consulta.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--accent-bd);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">03 · CONVERSAR</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Consultas naturales</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Transformar la búsqueda de información en una interacción simple con IA.</div>
+      </div>
+      <div class="rv obj-acc" style="border-top:2px solid var(--hair2);padding-top:20px">
+        <div class="obj-summary" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>
+            <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:10px">04 · DAR CONFIANZA</div>
+            <div style="font:600 16px 'Space Grotesk';color:var(--text)">Respuestas trazables</div>
+          </span>
+          <span class="obj-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="obj-body" style="font:400 14px/1.62 'Space Grotesk';color:var(--text2);margin-top:8px">Mantener visible el vínculo entre las respuestas y sus fuentes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 · PROCESO ══════════ -->
+<section id="sec-proceso" class="cs-sec" style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">04 · PROCESO</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Cómo lo resolví</h2>
+    </div>
+    <div class="proc-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px">
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">01</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Discovery</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Problema, objetivos de negocio y dinámica comercial.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">02</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Definición funcional</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Módulos, reglas, señales y prioridades.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">03</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Arquitectura</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Navegación, jerarquías y recorridos desde el home de la app.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">04</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Flujos</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Acciones diferenciadas para organizar, ejecutar y dar seguimiento.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">05</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">UI Design</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Pantallas mobile, componentes y estados.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">06</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Prototipo</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Flujos navegables en Figma.</div>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">07</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Validación</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Revisión con stakeholders y ajustes.</div>
+      </div>
+      <div class="rv step-card" style="background:linear-gradient(135deg,var(--accent-soft),transparent);border:1px solid var(--accent-bd);border-radius:14px;padding:22px 20px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:10px">08</div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:7px">Handoff</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Specs, documentación y QA visual.</div>
+      </div>
+    </div>
+    <div class="mtabs">
+      <div class="mtabs-nav">
+        <button type="button" class="mtabs-tab is-active" data-tab-target="1">Arquitectura</button>
+        <button type="button" class="mtabs-tab" data-tab-target="2">Flujos clave</button>
+        <button type="button" class="mtabs-tab" data-tab-target="3">Wireframes</button>
+      </div>
+    <div class="proc2-grid mtabs-body" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch">
+      <div class="rv step-card mtabs-panel is-active" data-tab="1" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font:600 15px 'Space Grotesk';color:var(--text)">Arquitectura</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:11px;background:var(--accent-soft);border:1px solid var(--accent-bd)">
+            <span style="font:600 12px 'Space Grotesk';color:var(--accent)">Home</span>
+            <span style="font:400 10px 'JetBrains Mono',monospace;color:var(--accent2)">punto de entrada</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;padding-left:14px;border-left:1px solid var(--accent-bd)">
+<div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+          <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Nueva consulta</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Iniciar una interacción con IA.</div></div>
+        </div><div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+          <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Definir fuente</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Todos los documentos, período o documento específico.</div></div>
+        </div><div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+          <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Consultas destacadas</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Acceso a consultas sugeridas.</div></div>
+        </div><div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+          <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Consultas recientes</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Retomar conversaciones anteriores.</div></div>
+        </div><div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+          <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Perfil</div><div style="font:400 11px/1.5 'Space Grotesk';color:var(--text3)">Sesión y preferencias.</div></div>
+        </div>
+          </div>
+        </div>
+      </div>
+      <div class="rv step-card mtabs-panel" data-tab="2" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font:600 15px 'Space Grotesk';color:var(--text)">Flujos clave</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="font:500 10px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:.5px">FLUJO 1</span><span style="font:600 12px 'Space Grotesk';color:var(--text)">Nueva consulta</span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px"><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Home</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Definir fuente</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Escribir consulta</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Respuesta IA</span></div>
+        </div>
+<div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="font:500 10px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:.5px">FLUJO 2</span><span style="font:600 12px 'Space Grotesk';color:var(--text)">Documento específico</span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px"><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Definir fuente</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Buscar documento</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Seleccionar</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Consultar</span></div>
+        </div>
+<div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:baseline;gap:8px"><span style="font:500 10px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:.5px">FLUJO 3</span><span style="font:600 12px 'Space Grotesk';color:var(--text)">Retomar consulta</span></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px"><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Home</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Consultas recientes</span><span style="font:400 11px 'JetBrains Mono',monospace;color:var(--accent2)">→</span><span style="padding:6px 11px;border-radius:8px;background:var(--bg2);border:1px solid var(--hair);font:400 11px 'Space Grotesk';color:var(--text2)">Abrir conversación</span></div>
+        </div>
+        </div>
+      </div>
+      <div class="rv step-card mtabs-panel" data-tab="3" style="grid-column:1/-1;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="display:flex;align-items:baseline;gap:10px">
+          <span style="font:600 15px 'Space Grotesk';color:var(--text)">Wireframes</span>
+        </div>
+        <div class="wf-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+<div style="border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:var(--bg2)"><img loading="lazy" src="uploads/Default.png" alt="Wireframe — acceso" style="width:100%;height:auto;display:block"></div><div style="border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:var(--bg2)"><img loading="lazy" src="uploads/Default-a7d3e27a.png" alt="Wireframe — inicio" style="width:100%;height:auto;display:block"></div><div style="border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:var(--bg2)"><img loading="lazy" src="uploads/Proceso.png" alt="Wireframe — respuesta IA" style="width:100%;height:auto;display:block"></div><div style="border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:var(--bg2)"><img loading="lazy" src="uploads/Carga.png" alt="Wireframe — fuente" style="width:100%;height:auto;display:block"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 05 · SISTEMA ══════════ -->
+<section id="sec-sistema" class="cs-sec" style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:36px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">05 · SISTEMA DISEÑADO</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Un sistema de consultas, contexto y fuentes.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:58ch">La experiencia se diseñó para convertir documentación corporativa en información accesible mediante consultas simples, manteniendo siempre visible el contexto utilizado por la IA.</p>
+    </div>
+    <div class="sys-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:18px">
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Consultas</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Permiten preguntar en lenguaje natural sobre información corporativa.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Fuentes</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Permiten definir sobre qué documentación se realiza cada consulta.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Respuestas IA</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Sintetizan información relevante a partir del contexto seleccionado.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Trazabilidad</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Permite identificar y consultar las fuentes utilizadas en cada respuesta.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow);min-height:130px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Historial</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Facilita recuperar consultas anteriores y volver a información relevante.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 · PANTALLAS ══════════ -->
+<section id="sec-pantallas" class="cs-sec cs-sec-overlap" style="position:relative;margin-top:-48px;padding:80px 0;background:var(--bg2);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:52px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">06 · SOLUCIÓN VISUAL</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Una experiencia simple para consultar información compleja.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:56ch">La interfaz prioriza claridad, baja fricción y contexto visible para que los usuarios puedan consultar información corporativa sin necesidad de recorrer manualmente la documentación.</p>
+    </div>
+
+    <!-- GUARDA VISUAL -->
+    <div style="margin-bottom:64px">
+      <div class="guarda-dark carousel-mobile" style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;align-items:start">
+        <div class="rv from-scale" style="margin-top:64px"><img loading="lazy" src="uploads/1-74947d7f.png" alt="Home con filtro de fuente" class="guarda-float" style="width:100%;height:auto;border-radius:16px;display:block;animation-delay:0s"></div>
+        <div class="rv from-scale" style="margin-top:0"><img loading="lazy" src="uploads/2-dc944d09.png" alt="Conversación con el asistente" class="guarda-float" style="width:100%;height:auto;border-radius:16px;display:block;animation-delay:.6s"></div>
+        <div class="rv from-scale" style="margin-top:36px"><img loading="lazy" src="uploads/3.png" alt="Fuente citada" class="guarda-float" style="width:100%;height:auto;border-radius:16px;display:block;animation-delay:1.2s"></div>
+        <div class="rv from-scale" style="margin-top:0"><img loading="lazy" src="uploads/4.png" alt="Acceso seguro" class="guarda-float" style="width:100%;height:auto;border-radius:16px;display:block;animation-delay:.3s"></div>
+        <div class="rv from-scale" style="margin-top:64px"><img loading="lazy" src="uploads/5.png" alt="Home en dispositivo" class="guarda-float" style="width:100%;height:auto;border-radius:16px;display:block;animation-delay:.9s"></div>
+      </div>
+    </div>
+
+    <div class="mtabs">
+      <div class="mtabs-nav">
+        <button type="button" class="mtabs-tab is-active" data-tab-target="1">Inicio</button>
+        <button type="button" class="mtabs-tab" data-tab-target="2">Fuentes</button>
+        <button type="button" class="mtabs-tab" data-tab-target="3">Conversación</button>
+        <button type="button" class="mtabs-tab" data-tab-target="4">Trazabilidad</button>
+      </div>
+    <div class="mtabs-body">
+    <!-- BLOQUE 1 -->
+    <div class="rv mtabs-panel is-active" data-tab="1" style="margin-bottom:60px">
+      <div class="bloque-head" style="display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--hair)">
+        <span style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px">BLOQUE 1</span>
+        <span style="font:600 17px 'Space Grotesk';color:var(--text)">Inicio y consultas</span>
+      </div>
+      <p style="margin:0 0 22px;font:400 15px/1.65 'Space Grotesk';color:var(--text2);max-width:58ch">Todo empieza desde un mismo lugar. Nueva consulta, fuente activa y accesos a consultas destacadas y recientes.</p>
+      <div class="carousel-mobile" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px">
+        <img loading="lazy" src="uploads/bloque1-1.png" alt="Home con nueva consulta y fuente activa" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque1-3.png" alt="Consultas recientes" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque1-2.png" alt="Consultas destacadas" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+      </div>
+    </div>
+
+    <!-- BLOQUE 2 -->
+    <div class="rv mtabs-panel" data-tab="2" style="margin-bottom:60px">
+      <div class="bloque-head" style="display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--hair)">
+        <span style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px">BLOQUE 2</span>
+        <span style="font:600 17px 'Space Grotesk';color:var(--text)">Selección de fuentes</span>
+      </div>
+      <p style="margin:0 0 22px;font:400 15px/1.65 'Space Grotesk';color:var(--text2);max-width:58ch">Definir el contexto antes de preguntar. El usuario puede consultar todos los documentos, filtrar por período o seleccionar una fuente específica.</p>
+      <div class="carousel-mobile" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+        <img loading="lazy" src="uploads/bloque2-1.png" alt="Filtrar documentos" style="height:320px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque2-2.png" alt="Seleccionar mes" style="height:320px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque2-3.png" alt="Seleccionar documento" style="height:320px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque2-4.png" alt="Documento seleccionado" style="height:320px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+      </div>
+    </div>
+
+    <!-- BLOQUE 3 -->
+    <div class="rv mtabs-panel" data-tab="3" style="margin-bottom:60px">
+      <div class="bloque-head" style="display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--hair)">
+        <span style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px">BLOQUE 3</span>
+        <span style="font:600 17px 'Space Grotesk';color:var(--text)">Conversación con IA</span>
+      </div>
+      <p style="margin:0 0 22px;font:400 15px/1.65 'Space Grotesk';color:var(--text2);max-width:58ch">Preguntar como en una conversación. Una interfaz simple permite consultar información y seguir el proceso de generación de la respuesta.</p>
+      <div class="carousel-mobile" style="display:grid;grid-template-columns:1fr 1fr 2fr;gap:14px">
+        <img loading="lazy" src="uploads/bloque3-1.png" alt="Sugerencias de consulta" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque3-2.png" alt="Consulta en curso" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+        <img loading="lazy" src="uploads/bloque3-3.png" alt="Respuesta de la IA" style="height:340px;width:100%;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+      </div>
+    </div>
+
+    <!-- BLOQUE 4 -->
+    <div class="rv mtabs-panel" data-tab="4">
+      <div class="bloque-head" style="display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--hair)">
+        <span style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px">BLOQUE 4</span>
+        <span style="font:600 17px 'Space Grotesk';color:var(--text)">Fuentes y trazabilidad</span>
+      </div>
+      <p style="margin:0 0 22px;font:400 15px/1.65 'Space Grotesk';color:var(--text2);max-width:58ch">Entender de dónde viene la respuesta. Las fuentes utilizadas permanecen accesibles para aportar contexto y respaldo a la información.</p>
+      <div class="carousel-mobile" style="display:grid;grid-template-columns:1fr;max-width:360px">
+        <img loading="lazy" src="uploads/bloque4-1.png" alt="Detalle de fuente citada" style="width:100%;height:auto;object-fit:cover;border-radius:16px;background:var(--surface);border:1px solid var(--hair)">
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 · COMPONENTES UI ══════════ -->
+<section id="sec-componentes" class="cs-sec" style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">07 · COMPONENTES Y CRITERIOS UI</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Una interfaz consistente, escalable y preparada para desarrollo.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:58ch">La interfaz se construyó sobre componentes reutilizables y patrones consistentes, contemplando los distintos estados necesarios para una experiencia mobile clara y predecible.</p>
+    </div>
+    <div class="rv from-scale" style="margin-bottom:28px">
+      <img loading="lazy" src="uploads/componentes.png" alt="Sistema de componentes: botones, cards y campos de consulta con sus estados" style="width:100%;height:auto;border-radius:16px;display:block;border:1px solid var(--hair)">
+    </div>
+    <div class="sys-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Consistencia</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Patrones de interacción reutilizables.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Estados</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Variantes para loading, error, disabled y feedback.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Mobile-first</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Componentes y jerarquías optimizados para interacción mobile.</div>
+      </div>
+      <div class="rv sys-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:16px;padding:20px;box-shadow:0 10px 30px var(--shadow)">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:8px;text-transform:uppercase">Handoff</div>
+        <div style="font:400 13px/1.58 'Space Grotesk';color:var(--text2)">Componentes definidos para facilitar implementación y escalabilidad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 · IMPACTO ══════════ -->
+<section id="sec-impacto" class="cs-sec" style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">08 · IMPACTO</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Información más accesible para decisiones más ágiles.</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:58ch">Una experiencia diseñada para reducir la fricción al consultar información corporativa.</p>
+    </div>
+    <div class="impact-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:48px">
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px">
+        <div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:8px">Búsqueda más ágil</div>
+        <div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2)">Acceso directo a información relevante.</div>
+      </div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px">
+        <div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:8px">Menor carga cognitiva</div>
+        <div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2)">Síntesis de información extensa.</div>
+      </div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px">
+        <div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:8px">Mayor contexto</div>
+        <div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2)">Respuestas vinculadas a sus fuentes.</div>
+      </div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px">
+        <div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div>
+        <div style="font:600 14px 'Space Grotesk';color:var(--text);margin-bottom:8px">Acceso mobile</div>
+        <div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2)">Consultas rápidas desde cualquier lugar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 09 · EQUIPO ══════════ -->
+<section id="sec-equipo" class="cs-sec" style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">09 · EQUIPO Y ROL</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Equipo y rol</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;transition:border-color .2s" style-hover="border-color:var(--accent-bd)">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px 'Space Grotesk';flex:0 0 auto">DV</div>
+          <div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Daiana de la Vega</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Product Designer · UX/UI · Arquitectura de información · Flujos conversacionales · Componentes · Prototipo y handoff</div></div>
+        </div>
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;transition:border-color .2s" style-hover="border-color:var(--accent-bd)">
+          <div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">PM</div>
+          <div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Producto / Project Management</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Definición funcional · Alcance · Priorización</div></div>
+        </div>
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;transition:border-color .2s" style-hover="border-color:var(--accent-bd)">
+          <div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">BIZ</div>
+          <div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Stakeholders de negocio</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Necesidades de negocio · Validación · Feedback</div></div>
+        </div>
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px;transition:border-color .2s" style-hover="border-color:var(--accent-bd)">
+          <div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">DEV</div>
+          <div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Equipo de desarrollo</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Implementación · Factibilidad técnica · QA visual</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 10 · DISCLAIMER ══════════ -->
+<section style="padding:56px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="display:flex;align-items:start;gap:20px">
+      <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--text3);letter-spacing:2px;white-space:nowrap;padding-top:2px">DISCLAIMER</div>
+      <p style="margin:0;font:400 14px/1.7 'Space Grotesk';color:var(--text3)">El caso utiliza branding, colores, nombres y contenido ficticio/adaptado para proteger información confidencial del cliente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 11 · PROTOTIPO ══════════ -->
+<section id="prototipo" class="cs-sec" style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:28px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">10 · PROTOTIPO FUNCIONAL</div>
+      <h2 style="margin:0 0 10px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Prototipo funcional</h2>
+      <p style="margin:0;font:400 16px/1.65 'Space Grotesk';color:var(--text2);max-width:50ch">El prototipo permite recorrer los principales flujos de la experiencia: nueva consulta, selección de fuente, respuesta de la IA y revisión de las fuentes citadas.</p>
+    </div>
+    <div class="rv proto-frame" style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px var(--shadow);border:1px solid var(--hair);aspect-ratio:16/9;background:var(--surface)">
+      <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/8r0A7aJfGbVcZPjQFejLuv/PORFOLIO-KOANDINA--Handoff--App-Mobile-IA-Gen.---KoAndina--Copy---Copy-?node-id=722-2360%26viewport=605%2C209%2C0.09%26t=Zp1BtIQfTAzYxxr6-1%26scaling=scale-down%26content-scaling=fixed%26starting-point-node-id=722%3A1998%26page-id=715%3A1495" style="width:100%;height:100%;border:none" allowfullscreen></iframe>
+    </div>
+    <div style="margin-top:14px;text-align:center">
+      <a href="https://www.figma.com/proto/8r0A7aJfGbVcZPjQFejLuv/PORFOLIO-KOANDINA--Handoff--App-Mobile-IA-Gen.---KoAndina--Copy---Copy-?node-id=722-2360&viewport=605%2C209%2C0.09&t=Zp1BtIQfTAzYxxr6-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=722%3A1998&page-id=715%3A1495" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;background:var(--accent-soft);border:1.5px solid var(--accent-bd);color:var(--accent2);font:600 13px 'Space Grotesk';text-decoration:none">Abrir en Figma →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 12 · FINAL — estilo contacto ══════════ -->
+<section id="cs-footer" class="cs-sec-overlap" style="position:relative;margin-top:-48px;min-height:60vh;background:#6d4dff;border-radius:40px 40px 0 0;box-shadow:0 -34px 70px rgba(80,60,140,0.24);border-top:1px solid rgba(255,255,255,0.12);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:100px 0 0;position:relative">
+  <div style="position:absolute;left:50%;top:30%;width:700px;height:480px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(255,255,255,0.12),transparent 62%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw 80px;display:flex;flex-direction:column;gap:30px">
+    <div class="rv" style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">// más trabajo</div>
+    <h2 class="rv" style="margin:0;font:400 clamp(40px,6vw,96px)/1.0 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:#fff;max-width:16ch">¿Tenés un proyecto en mente? <span style="color:#e7dfff;font-style:italic">Hablemos.</span></h2>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="index.html#contacto" class="cta-btn" style="display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;background:#fff;color:#4b2bd6;font:600 15px 'Space Grotesk';text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)">Contactame</a>
+      <a href="index.html#proyectos" class="outline-btn" style="display:inline-flex;align-items:center;gap:8px;padding:16px 24px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);color:#fff;font:600 14px 'Space Grotesk';text-decoration:none">Ver todo el portfolio</a>
+    </div>
+    <a href="wessex-mint.html" class="rv" style="display:flex;flex-direction:column;gap:10px;align-self:flex-start;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.22);color:#fff;text-decoration:none" style-hover="opacity:.85">
+      <span style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">SIGUIENTE PROYECTO →</span>
+      <span style="font:400 clamp(28px,3.4vw,48px)/1.05 'Instrument Serif',Georgia,serif;letter-spacing:-0.5px">Wessex Mint · Live Commerce UI</span>
+    </a>
+  </div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:100px 4vw 20px;border-top:1px solid rgba(255,255,255,0.15);display:flex;justify-content:space-between;font:400 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.4)">
+    <span>© 2026 Daiana de la Vega</span>
+    <span>Asistente IA para Comité Directivo · Caso de estudio</span>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { theme: 'light' };
+
+  applyTheme(t) {
+    const app = document.getElementById('cs-app'); if (!app) return;
+    const D = {
+      '--bg':'#0c0a12','--bg2':'#14111c','--bg3':'#0a0810','--surface':'#1a1622',
+      '--text':'#f1eff7','--text2':'#9b95ab','--text3':'#8a8399',
+      '--hair':'rgba(255,255,255,0.08)','--hair2':'rgba(255,255,255,0.16)',
+      '--accent':'#8a63ff','--accent2':'#a78bff',
+      '--accent-soft':'rgba(138,99,255,0.16)','--accent-bd':'rgba(138,99,255,0.3)',
+      '--nav':'rgba(23,19,31,0.82)','--glow':'rgba(138,99,255,0.18)','--shadow':'rgba(0,0,0,0.5)',
+      '--grid-line':'rgba(255,255,255,0.045)','--grid-dot':'rgba(138,99,255,0.30)'
+    };
+    const L = {
+      '--bg':'#f4f1fa','--bg2':'#ece8f5','--bg3':'#e6e1f1','--surface':'#ffffff',
+      '--text':'#1b1726','--text2':'#5f5872','--text3':'#6b6480',
+      '--hair':'rgba(27,23,38,0.10)','--hair2':'rgba(27,23,38,0.18)',
+      '--accent':'#6d4dff','--accent2':'#5b3ef0',
+      '--accent-soft':'rgba(124,92,255,0.12)','--accent-bd':'rgba(124,92,255,0.30)',
+      '--nav':'rgba(255,255,255,0.82)','--glow':'rgba(124,92,255,0.14)','--shadow':'rgba(80,60,140,0.18)',
+      '--grid-line':'rgba(27,23,38,0.045)','--grid-dot':'rgba(124,92,255,0.22)'
+    };
+    const v = t === 'dark' ? D : L;
+    for (const k in v) app.style.setProperty(k, v[k]);
+    try { document.body.style.background = v['--bg']; localStorage.setItem('dv-theme', t); } catch(e) {}
+    if (this.state.theme !== t) this.setState({ theme: t });
+  }
+
+  componentDidMount() {
+    let saved = 'light';
+    try { saved = localStorage.getItem('dv-theme') || 'light'; } catch(e) {}
+    this.applyTheme(saved);
+
+    // custom cursor
+    const fine = window.matchMedia('(pointer:fine)').matches;
+    const dot = document.getElementById('cs-dot'), ring = document.getElementById('cs-ring');
+    if (fine && dot && ring) {
+      window.addEventListener('mousemove',()=>{ document.documentElement.style.cursor='none'; },{once:true});
+      let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+      window.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+      });
+      const loop = () => {
+        rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+        this._raf = requestAnimationFrame(loop);
+      };
+      loop();
+      const grow = () => { ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='var(--accent)'; ring.style.background='var(--accent-soft)'; };
+      const shrink = () => { ring.style.width='30px'; ring.style.height='30px'; ring.style.borderColor='var(--accent-bd)'; ring.style.background='transparent'; };
+      document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter', grow); el.addEventListener('mouseleave', shrink); });
+      const footer = document.getElementById('cs-footer');
+      if (footer) {
+        footer.addEventListener('mouseenter', () => { dot.style.background = '#fff'; ring.style.borderColor = 'rgba(255,255,255,0.55)'; });
+        footer.addEventListener('mouseleave', () => { dot.style.background = 'var(--accent)'; ring.style.borderColor = 'var(--accent-bd)'; });
+      }
+    } else if (dot && ring) { dot.style.display='none'; ring.style.display='none'; }
+
+    // staggered scroll reveals
+    const reveals = [...document.querySelectorAll('.rv:not(.on)')];
+    let pending = new Set(reveals);
+    const check = () => {
+      const h = window.innerHeight;
+      // group by approximate row for stagger
+      const visible = [...pending].filter(el => {
+        const r = el.getBoundingClientRect();
+        return r.top < h * 0.92 && r.bottom > 0;
+      });
+      if (!visible.length) return;
+      // sort by top position, stagger siblings in same row
+      visible.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      let lastRowTop = -999, rowCount = 0;
+      visible.forEach(el => {
+        const top = Math.round(el.getBoundingClientRect().top / 60);
+        if (top !== lastRowTop) { lastRowTop = top; rowCount = 0; } else { rowCount++; }
+        el.style.animationDelay = (rowCount * 80) + 'ms';
+        el.classList.add('on');
+        pending.delete(el);
+      });
+    };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+    setTimeout(check, 300);
+    this._failsafe = setTimeout(() => {
+      pending.forEach(el => { el.style.animationDelay = '0ms'; el.classList.add('on'); });
+    }, 9000);
+
+    const syncObjAcc = () => {
+      const desktop = window.matchMedia('(min-width:681px)').matches;
+      document.querySelectorAll('.obj-acc').forEach(d => { d.classList.toggle('is-open', desktop); });
+    };
+    syncObjAcc();
+    window.addEventListener('resize', syncObjAcc, { passive: true });
+    document.querySelectorAll('.obj-acc .obj-summary').forEach(s => {
+      s.addEventListener('click', () => { s.closest('.obj-acc').classList.toggle('is-open'); });
+    });
+
+    // mobile tab groups
+    document.querySelectorAll('.mtabs').forEach(group => {
+      const tabs = [...group.querySelectorAll('.mtabs-tab')];
+      const panels = [...group.querySelectorAll('.mtabs-panel')];
+      tabs.forEach(tab => tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab-target');
+        tabs.forEach(t => t.classList.toggle('is-active', t === tab));
+        panels.forEach(p => p.classList.toggle('is-active', p.getAttribute('data-tab') === target));
+      }));
+    });
+
+    // carousel arrows
+    document.querySelectorAll('.carousel-mobile').forEach(car => {
+      const mkBtn = dir => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'car-arrow';
+        b.setAttribute('aria-label', dir === 'prev' ? 'Anterior' : 'Siguiente');
+        b.innerHTML = dir === 'prev'
+          ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>'
+          : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+        b.addEventListener('click', () => {
+          car.scrollBy({ left: dir === 'prev' ? -car.clientWidth * 0.86 : car.clientWidth * 0.86, behavior: 'smooth' });
+        });
+        return b;
+      };
+      const wrapper = document.createElement('div');
+      wrapper.className = 'car-wrap';
+      wrapper.style.position = 'relative';
+      car.parentElement.insertBefore(wrapper, car);
+      wrapper.appendChild(car);
+      const arrows = document.createElement('div');
+      arrows.className = 'car-arrows';
+      arrows.appendChild(mkBtn('prev'));
+      arrows.appendChild(mkBtn('next'));
+      wrapper.appendChild(arrows);
+    });
+
+    // bottom nav scroll-spy
+    const tocLinks = [...document.querySelectorAll('.mobile-toc a')];
+    if (tocLinks.length) {
+      const targets = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      const spy = () => {
+        const y = window.scrollY + window.innerHeight * 0.3;
+        let current = targets[0];
+        targets.forEach(t => { if (t.offsetTop <= y) current = t; });
+        tocLinks.forEach((a, i) => a.classList.toggle('is-active', targets[i] === current));
+      };
+      window.addEventListener('scroll', spy, { passive: true });
+      spy();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    document.documentElement.style.cursor = '';
+  }
+
+  renderVals() {
+    return {
+      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+      toggleTheme: () => this.applyTheme(this.state.theme === 'dark' ? 'light' : 'dark'),
+    };
+  }
+}
+</script>
+</body>
+</html>

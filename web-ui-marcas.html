@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web UI para marcas digitales · Caso de estudio | Dai de la Vega</title>
+<meta name="description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: sitios web para Bombo Agency y WorkerTech LAC.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dai de la Vega">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Web UI para marcas digitales · Caso de estudio | Dai de la Vega">
+<meta property="og:description" content="Caso de estudio de Dai de la Vega, Product Designer UX/UI: sitios web para Bombo Agency y WorkerTech LAC.">
+<meta property="og:url" content="https://daidelavega.com/web-ui-marcas">
+<link rel="canonical" href="https://daidelavega.com/web-ui-marcas">
+<meta name="twitter:card" content="summary">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#f4f1fa}
+  *{box-sizing:border-box}
+  body,#app,#cs-app{font-family:'Space Grotesk',sans-serif}
+  a,button,input,select,textarea{font-family:'Space Grotesk',sans-serif}
+  a{text-decoration:none}
+  .see-proj,.cta-btn,.outline-btn,.back-btn{font-family:'Space Grotesk',sans-serif!important;text-decoration:none!important}
+  .see-proj{font-weight:600;font-size:13px}
+  @keyframes fadeUp{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:none}}
+  @keyframes cs-pop{0%{opacity:0;transform:scale(.9) translateY(14px)}75%{transform:scale(1.02) translateY(-3px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+  @keyframes rv-up{0%{opacity:0;transform:translateY(26px)}100%{opacity:1;transform:none}}
+  @keyframes rv-scale{0%{opacity:0;transform:scale(.96)}100%{opacity:1;transform:scale(1)}}
+  .rv{opacity:0}
+  .rv.on{animation:rv-up .65s cubic-bezier(.2,.7,.2,1) both}
+  .rv.on.from-scale{animation:rv-scale .55s cubic-bezier(.2,.7,.2,1) both}
+  .step-card{transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease}
+  .step-card:hover{transform:translateY(-5px);box-shadow:0 22px 52px var(--shadow);border-color:var(--accent-bd)}
+  .impact-card{transition:transform .22s,box-shadow .22s,border-color .22s}
+  .impact-card:hover{transform:translateY(-5px);box-shadow:0 20px 44px var(--shadow);border-color:var(--accent-bd)}
+  .ph{background:linear-gradient(145deg,var(--bg2),var(--bg3));border:1.5px dashed var(--accent-bd);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:32px 24px;color:var(--text3)}
+  .ph-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--accent-bd);display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto}
+  .ph-label{font:600 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;text-transform:uppercase}
+  .ph-desc{font:400 12px/1.5 'JetBrains Mono',monospace;color:var(--text3);max-width:28ch}
+  .back-btn:hover{background:var(--accent-soft) !important;color:var(--accent) !important}
+  .cta-btn{transition:transform .2s,box-shadow .2s}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 48px rgba(0,0,0,0.35)}
+  .outline-btn{transition:background .2s,border-color .2s,color .2s}
+  .outline-btn:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.5)}
+  @media (max-width:1240px){
+    .hero-txt{max-width:46%!important}
+    .hero-collage{right:4vw!important;width:min(50vw,600px)!important}
+  }
+  @media (max-width:1040px){
+    .hero-collage{position:relative!important;right:auto!important;top:auto!important;transform:none!important;width:min(88vw,480px)!important;margin:44px auto 0;order:2}
+    .hero-txt{max-width:100%!important}
+    .hero-sec{min-height:0!important;padding:110px 0 60px!important}
+  }
+  @media (max-width:900px){.brands-grid{grid-template-columns:1fr!important}}
+  @media (max-width:900px){.impact-grid{grid-template-columns:repeat(2,1fr)!important}}
+  @media (max-width:560px){.impact-grid{grid-template-columns:1fr!important}}
+  @media (max-width:760px){.shots-grid{grid-template-columns:1fr!important}}
+  @media (max-width:680px){
+    .back-btn-label{display:none!important}
+    .back-btn{padding:0!important;width:36px;height:36px;justify-content:center}
+    .split-head{grid-template-columns:1fr!important;gap:16px!important}
+  }
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  #contacto :focus-visible,#cs-footer :focus-visible{outline-color:#fff}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+
+<div id="cs-app" style="--bg:#f4f1fa;--bg2:#ece8f5;--bg3:#e6e1f1;--surface:#ffffff;--text:#1b1726;--text2:#5f5872;--text3:#6b6480;--hair:rgba(27,23,38,0.10);--hair2:rgba(27,23,38,0.18);--accent:#6d4dff;--accent2:#5b3ef0;--accent-soft:rgba(124,92,255,0.12);--accent-bd:rgba(124,92,255,0.30);--nav:rgba(255,255,255,0.82);--glow:rgba(124,92,255,0.14);--shadow:rgba(80,60,140,0.18);--grid-line:rgba(27,23,38,0.045);--grid-dot:rgba(124,92,255,0.22);background:var(--bg);min-height:100vh;font-family:'Space Grotesk',sans-serif;color:var(--text)">
+
+<div id="cs-ring" style="position:fixed;left:0;top:0;width:30px;height:30px;border:1.5px solid var(--accent-bd);border-radius:50%;pointer-events:none;z-index:9999;transition:width .22s,height .22s,background .22s,border-color .22s;will-change:transform"></div>
+<div id="cs-dot" style="position:fixed;left:0;top:0;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10000;will-change:transform"></div>
+
+<nav style="position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:6px;padding:8px;background:var(--nav);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--hair);border-radius:999px;box-shadow:0 12px 36px var(--shadow)">
+  <a href="index.html" class="back-btn" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;color:var(--text2);font:500 13px 'Space Grotesk';text-decoration:none;transition:background .2s,color .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><polyline points="15 18 9 12 15 6"></polyline></svg><span class="back-btn-label">Volver</span></a>
+  <span style="width:1px;height:18px;background:var(--hair2);margin:0 2px"></span>
+  <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);color:#fff;font:700 13px 'Space Grotesk'">DV</span>
+  <button onClick="{{ toggleTheme }}" title="Cambiar tema" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid var(--hair2);background:transparent;color:var(--text);font-size:15px;cursor:pointer">{{ themeIcon }}</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero-sec" style="min-height:auto;display:flex;flex-direction:column;justify-content:center;padding:130px 0 60px;position:relative;overflow:hidden;background:radial-gradient(110% 80% at 70% -8%,var(--glow),transparent 52%),radial-gradient(70% 55% at 0% 110%,var(--glow),transparent 58%),var(--bg2)">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px),radial-gradient(circle,var(--grid-dot) 1.3px,transparent 1.8px);background-size:56px 56px,56px 56px,56px 56px;background-position:0 0,0 0,28px 28px;-webkit-mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 78% 75% at 50% 42%,#000 50%,transparent 100%);pointer-events:none"></div>
+  <div class="hero-collage" style="position:absolute;right:4vw;top:50%;transform:translateY(-50%);width:min(52vw,700px);z-index:2">
+    <img src="uploads/hro-ec8ad022.png" alt="Bombo Agency y WorkerTech LAC · desktop y mobile" style="width:100%;height:auto;display:block;filter:drop-shadow(0 28px 56px var(--shadow));animation:cs-pop .65s .15s cubic-bezier(.34,1.56,.64,1) both">
+  </div>
+
+  <div style="position:relative;z-index:4;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="hero-txt" style="max-width:42%;animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:18px">// caso de estudio · diseño web</div>
+      <h1 style="margin:0 0 22px;font:400 clamp(34px,4.8vw,68px)/1.05 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:var(--text)">Web UI para marcas digitales</h1>
+      <p style="margin:0 0 32px;font:400 clamp(14px,1.3vw,17px)/1.7 'Space Grotesk';color:var(--text2)">Dos experiencias web con desafíos distintos: comunicar una agencia creativa y organizar un ecosistema regional de innovación, desde la arquitectura hasta la implementación.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Rol · UX/UI Designer</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Plataforma · Web</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--hair2);font:500 12px 'JetBrains Mono',monospace;color:var(--text2)">Stack · Figma + Wix</span>
+        <span style="padding:8px 16px;border-radius:999px;background:var(--accent-soft);border:1px solid var(--accent-bd);font:500 12px 'JetBrains Mono',monospace;color:var(--accent2)">2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 · CONTEXTO -->
+<section style="position:relative;margin-top:-28px;padding:100px 0 80px;background:var(--bg);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">01 · CONTEXTO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">El contexto</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">Bombo Agency y WorkerTech LAC necesitaban experiencias web adaptadas a identidades y objetivos diferentes. En ambos proyectos trabajé desde la arquitectura de contenido y los wireframes hasta el diseño responsive y la implementación en Wix.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · DOS DESAFÍOS DISTINTOS -->
+<section style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">02 · DOS DESAFÍOS DISTINTOS</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text);max-width:28ch">Dos marcas, dos desafíos</h2>
+    </div>
+    <div class="brands-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:32px 28px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:14px;text-transform:uppercase">Bombo</div>
+        <div style="font:600 16px 'Space Grotesk';color:var(--text);margin-bottom:10px">Expresión visual y conversión</div>
+        <p style="margin:0;font:400 15px/1.62 'Space Grotesk';color:var(--text2)">Presentar los servicios de la agencia, mostrar el portfolio y sumar un shop de plantillas al recorrido.</p>
+      </div>
+      <div class="rv step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:32px 28px">
+        <div style="font:500 11px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1.5px;margin-bottom:14px;text-transform:uppercase">WorkerTech LAC</div>
+        <div style="font:600 16px 'Space Grotesk';color:var(--text);margin-bottom:10px">Claridad y organización</div>
+        <p style="margin:0;font:400 15px/1.62 'Space Grotesk';color:var(--text2)">Ordenar concursos, convocatorias y contenido regional para que cada recorrido se entienda por separado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · ARQUITECTURA DE CONTENIDO -->
+<section style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;margin-bottom:40px">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">03 · ARQUITECTURA</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Arquitectura de contenido</h2>
+      </div>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2)">Antes de diseñar la UI, definí qué necesitaba comunicar cada sitio, en qué orden y con qué peso.</p>
+    </div>
+    <div class="rv shots-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch">
+
+      <div class="step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 30px var(--shadow)">
+        <div>
+          <div style="font:600 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:6px">SITEMAP · BOMBO</div>
+          <div style="font:400 12.5px 'Space Grotesk';color:var(--text3)">Agencia dinámica · Servicios · Portfolio · Shop</div>
+        </div>
+        <div style="align-self:flex-start;display:flex;flex-direction:column;gap:5px;padding:9px 14px;border-radius:11px;background:var(--accent-soft);border:1px solid var(--accent-bd)">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 12px 'Space Grotesk';color:var(--accent)">Inicio</span><span style="font:400 10px 'JetBrains Mono',monospace;color:var(--accent2)">punto de entrada</span></div>
+          
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px;padding-left:14px;border-left:1px solid var(--accent-bd)">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Servicios</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Portfolio</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Sobre Bombo</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Shop</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Contacto</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card" style="background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px 24px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 30px var(--shadow)">
+        <div>
+          <div style="font:600 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:1px;margin-bottom:6px">SITEMAP · WORKERTECH LAC</div>
+          <div style="font:400 12.5px 'Space Grotesk';color:var(--text3)">Institucional · Regional · Qué hacemos · Novedades</div>
+        </div>
+        <div style="align-self:flex-start;display:flex;flex-direction:column;gap:5px;padding:9px 14px;border-radius:11px;background:var(--accent-soft);border:1px solid var(--accent-bd)">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 12px 'Space Grotesk';color:var(--accent)">Inicio</span><span style="font:400 10px 'JetBrains Mono',monospace;color:var(--accent2)">punto de entrada</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px;padding-left:14px;border-left:1px solid var(--accent-bd)">
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Qué hacemos</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-left:18px;padding-left:12px;border-left:1px solid var(--hair2)">
+            <div style="display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px dashed var(--hair2);border-radius:10px"><div style="width:5px;height:5px;border-radius:50%;background:var(--accent2);flex:none"></div><div style="font:500 11.5px 'Space Grotesk';color:var(--text2)">Concursos</div></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px dashed var(--hair2);border-radius:10px"><div style="width:5px;height:5px;border-radius:50%;background:var(--accent2);flex:none"></div><div style="font:500 11.5px 'Space Grotesk';color:var(--text2)">Impulso</div></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px dashed var(--hair2);border-radius:10px"><div style="width:5px;height:5px;border-radius:50%;background:var(--accent2);flex:none"></div><div style="font:500 11.5px 'Space Grotesk';color:var(--text2)">Observatorio</div></div>
+            <div style="display:flex;align-items:center;gap:9px;padding:7px 11px;border:1px dashed var(--hair2);border-radius:10px"><div style="width:5px;height:5px;border-radius:50%;background:var(--accent2);flex:none"></div><div style="font:500 11.5px 'Space Grotesk';color:var(--text2)">Diálogos</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;padding:9px 11px;background:var(--bg2);border:1px solid var(--hair);border-radius:11px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;margin-top:5px"></div>
+            <div><div style="font:600 12px 'Space Grotesk';color:var(--text)">Novedades</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 · WIREFRAMES -->
+<section style="padding:80px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:40px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">04 · WIREFRAMES</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Wireframes de validación rápida</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">Wireframes en baja fidelidad para probar jerarquías y recorridos antes de invertir en visual: qué va arriba, cómo se agrupan las secciones, dónde aparecen los CTAs.</p>
+    </div>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start">
+      <img loading="lazy" src="uploads/Home Wireframe.png" alt="Wireframe Home · Bombo" style="height:420px;width:auto;border-radius:10px;border:1px solid var(--hair2);flex:none"/>
+      <img loading="lazy" src="uploads/Portfolio Wireframe.png" alt="Wireframe Portfolio · Bombo" style="height:420px;width:auto;border-radius:10px;border:1px solid var(--hair2);flex:none"/>
+      <img loading="lazy" src="uploads/Shop Plantillas Wireframe.png" alt="Wireframe Shop Plantillas · Bombo" style="height:420px;width:auto;border-radius:10px;border:1px solid var(--hair2);flex:none"/>
+      <img loading="lazy" src="uploads/Home Wireframe-3b078e82.png" alt="Wireframe Home mobile · Bombo" style="height:420px;width:auto;border-radius:10px;border:1px solid var(--hair2);flex:none"/>
+      <img loading="lazy" src="uploads/Servicios Wireframe.png" alt="Wireframe Servicios mobile · Bombo" style="height:420px;width:auto;border-radius:10px;border:1px solid var(--hair2);flex:none"/>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · DIRECCIÓN VISUAL -->
+<section style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:40px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">05 · DIRECCIÓN VISUAL</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Dos identidades, un mismo criterio</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">Para Bombo prioricé ritmo y expresividad. Para WorkerTech, jerarquía editorial y claridad en la navegación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · SOLUCIÓN VISUAL: WORKERTECH LAC -->
+<section style="position:relative;margin-top:-28px;padding:100px 0 80px;background:var(--bg2);border-radius:40px 40px 0 0;box-shadow:0 -34px 70px var(--shadow);border-top:1px solid var(--hair)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:40px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">06 · SOLUCIÓN VISUAL</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">WorkerTech LAC</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">Concursos, convocatorias y novedades con recorridos propios dentro de una estructura común.</p>
+    </div>
+    <div class="rv shots-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 2-0f96f1dc.png" alt="WorkerTech LAC · Home" style="width:100%;height:auto;display:block;border-radius:16px"/>
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 5-efcae7c3.png" alt="WorkerTech LAC · Concursos" style="width:100%;height:auto;display:block;border-radius:16px"/>
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 3-f36a4e50.png" alt="WorkerTech LAC · Diálogos" style="width:100%;height:auto;display:block;border-radius:16px"/>
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 6.png" alt="WorkerTech LAC · Novedades" style="width:100%;height:auto;display:block;border-radius:16px"/>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · SOLUCIÓN VISUAL: BOMBO -->
+<section style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:40px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">07 · SOLUCIÓN VISUAL</div>
+      <h2 style="margin:0 0 12px;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Bombo Agency</h2>
+      <p style="margin:0;font:400 17px/1.72 'Space Grotesk';color:var(--text2);max-width:60ch">Servicios y portfolio con un mismo lenguaje visual y CTAs claros.</p>
+    </div>
+    <div class="rv shots-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 6-376eb450.png" alt="Bombo · Home" style="width:100%;height:auto;display:block;border-radius:16px"/>
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 3-3e10e394.png" alt="Bombo · Servicios" style="width:100%;height:auto;display:block;border-radius:16px"/>
+      <img loading="lazy" src="uploads/Screenshot_2026-11-02_18-32-36 5-6eb12142.png" alt="Bombo · Portfolio" style="width:100%;height:auto;display:block;border-radius:16px"/>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · RESULTADOS -->
+<section style="padding:80px 0;background:var(--bg)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv" style="margin-bottom:44px">
+      <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">08 · RESULTADOS</div>
+      <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Resultados</h2>
+    </div>
+    <div class="impact-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Dos sitios implementados en Wix</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">Desktop y mobile, construidos por mí a partir del diseño.</div></div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Dos sitemaps definidos</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">Bombo con shop integrado; WorkerTech con cuatro líneas de trabajo bajo Qué hacemos.</div></div>
+      <div class="rv impact-card" style="padding:26px 22px;background:var(--surface);border:1px solid var(--hair);border-radius:16px"><div style="width:28px;height:2px;background:var(--accent);border-radius:2px;margin-bottom:16px"></div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Wireframes y UI entregados</div><div style="font:400 13px/1.55 'Space Grotesk';color:var(--text2);margin-top:8px">Baja fidelidad para acordar jerarquías y UI final para cada marca.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROL Y EQUIPO -->
+<section style="padding:70px 0;background:var(--bg2)">
+  <div style="max-width:1280px;width:100%;margin:0 auto;padding:0 4vw">
+    <div class="rv split-head" style="display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start">
+      <div>
+        <div style="font:500 12px 'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:2px;margin-bottom:16px">ROL Y EQUIPO</div>
+        <h2 style="margin:0;font:400 clamp(26px,3vw,42px)/1.08 'Instrument Serif',Georgia,serif;color:var(--text)">Rol y equipo</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px"><div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6d4dff);display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px 'Space Grotesk';flex:0 0 auto">DV</div><div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Daiana de la Vega</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">UX/UI Designer · Arquitectura, wireframes, UI responsive e implementación en Wix</div></div></div>
+        
+        <div class="rv" style="display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--surface);border:1px solid var(--hair);border-radius:12px"><div style="width:38px;height:38px;border-radius:50%;background:var(--bg3);border:1px solid var(--hair2);display:flex;align-items:center;justify-content:center;color:var(--text2);font:700 12px 'Space Grotesk';flex:0 0 auto">BIZ</div><div><div style="font:600 14px 'Space Grotesk';color:var(--text)">Stakeholders</div><div style="font:400 12px 'JetBrains Mono',monospace;color:var(--text3)">Definición funcional · validación</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="cs-footer" style="position:relative;margin-top:-48px;min-height:56vh;background:#6d4dff;border-radius:40px 40px 0 0;box-shadow:0 -34px 70px rgba(80,60,140,0.24);border-top:1px solid rgba(255,255,255,0.12);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:100px 0 0">
+  <div style="position:absolute;left:50%;top:30%;width:700px;height:480px;transform:translate(-50%,-50%);background:radial-gradient(ellipse at center,rgba(255,255,255,0.12),transparent 62%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:0 4vw 80px;display:flex;flex-direction:column;gap:30px">
+    <div class="rv" style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">// más trabajo</div>
+    <h2 class="rv" style="margin:0;font:400 clamp(40px,6vw,96px)/1.0 'Instrument Serif',Georgia,serif;letter-spacing:-1px;color:#fff;max-width:16ch">¿Tenés un proyecto en mente? <span style="color:#e7dfff;font-style:italic">Hablemos.</span></h2>
+    <div class="rv" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="index.html#contacto" class="cta-btn" style="display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;background:#fff;color:#4b2bd6;font:600 15px 'Space Grotesk';text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2)">Contactame</a>
+      <a href="index.html#proyectos" class="outline-btn" style="display:inline-flex;align-items:center;gap:8px;padding:16px 24px;border-radius:999px;border:1px solid rgba(255,255,255,0.3);color:#fff;font:600 14px 'Space Grotesk';text-decoration:none">Ver todo el portfolio</a>
+    </div>
+    <a href="sales-enablement.html" class="rv" style="display:flex;flex-direction:column;gap:10px;align-self:flex-start;margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.22);color:#fff;text-decoration:none" style-hover="opacity:.85">
+      <span style="font:500 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.8);letter-spacing:2px">SIGUIENTE PROYECTO →</span>
+      <span style="font:400 clamp(28px,3.4vw,48px)/1.05 'Instrument Serif',Georgia,serif;letter-spacing:-0.5px">Sales Enablement App</span>
+    </a>
+  </div>
+  <div style="position:relative;max-width:1280px;width:100%;margin:0 auto;padding:40px 4vw 20px;border-top:1px solid rgba(255,255,255,0.15);display:flex;justify-content:space-between;font:400 12px 'JetBrains Mono',monospace;color:rgba(255,255,255,0.4)">
+    <span>© 2026 Daiana de la Vega</span>
+    <span>Web UI para marcas digitales · Caso de estudio</span>
+  </div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { theme: 'light' };
+
+  applyTheme(t) {
+    const app = document.getElementById('cs-app'); if (!app) return;
+    const D = {
+      '--bg':'#0c0a12','--bg2':'#14111c','--bg3':'#0a0810','--surface':'#1a1622',
+      '--text':'#f1eff7','--text2':'#9b95ab','--text3':'#8a8399',
+      '--hair':'rgba(255,255,255,0.08)','--hair2':'rgba(255,255,255,0.16)',
+      '--accent':'#8a63ff','--accent2':'#a78bff',
+      '--accent-soft':'rgba(138,99,255,0.16)','--accent-bd':'rgba(138,99,255,0.3)',
+      '--nav':'rgba(23,19,31,0.82)','--glow':'rgba(138,99,255,0.18)','--shadow':'rgba(0,0,0,0.5)',
+      '--grid-line':'rgba(255,255,255,0.045)','--grid-dot':'rgba(138,99,255,0.30)'
+    };
+    const L = {
+      '--bg':'#f4f1fa','--bg2':'#ece8f5','--bg3':'#e6e1f1','--surface':'#ffffff',
+      '--text':'#1b1726','--text2':'#5f5872','--text3':'#6b6480',
+      '--hair':'rgba(27,23,38,0.10)','--hair2':'rgba(27,23,38,0.18)',
+      '--accent':'#6d4dff','--accent2':'#5b3ef0',
+      '--accent-soft':'rgba(124,92,255,0.12)','--accent-bd':'rgba(124,92,255,0.30)',
+      '--nav':'rgba(255,255,255,0.82)','--glow':'rgba(124,92,255,0.14)','--shadow':'rgba(80,60,140,0.18)',
+      '--grid-line':'rgba(27,23,38,0.045)','--grid-dot':'rgba(124,92,255,0.22)'
+    };
+    const v = t === 'dark' ? D : L;
+    for (const k in v) app.style.setProperty(k, v[k]);
+    try { document.body.style.background = v['--bg']; localStorage.setItem('dv-theme', t); } catch(e) {}
+    if (this.state.theme !== t) this.setState({ theme: t });
+  }
+
+  componentDidMount() {
+    let saved = 'light';
+    try { saved = localStorage.getItem('dv-theme') || 'light'; } catch(e) {}
+    this.applyTheme(saved);
+
+    const fine = window.matchMedia('(pointer:fine)').matches;
+    const dot = document.getElementById('cs-dot'), ring = document.getElementById('cs-ring');
+    if (fine && dot && ring) {
+      window.addEventListener('mousemove',()=>{ document.documentElement.style.cursor='none'; },{once:true});
+      let mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
+      window.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
+      });
+      const loop = () => {
+        rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
+        ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+        this._raf = requestAnimationFrame(loop);
+      };
+      loop();
+      const grow = () => { ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='var(--accent)'; ring.style.background='var(--accent-soft)'; };
+      const shrink = () => { ring.style.width='30px'; ring.style.height='30px'; ring.style.borderColor='var(--accent-bd)'; ring.style.background='transparent'; };
+      document.querySelectorAll('a,button').forEach(el => { el.addEventListener('mouseenter', grow); el.addEventListener('mouseleave', shrink); });
+      const footer = document.getElementById('cs-footer');
+      if (footer) {
+        footer.addEventListener('mouseenter', () => { dot.style.background = '#fff'; ring.style.borderColor = 'rgba(255,255,255,0.55)'; });
+        footer.addEventListener('mouseleave', () => { dot.style.background = 'var(--accent)'; ring.style.borderColor = 'var(--accent-bd)'; });
+      }
+    } else if (dot && ring) { dot.style.display='none'; ring.style.display='none'; }
+
+    const reveals = [...document.querySelectorAll('.rv:not(.on)')];
+    let pending = new Set(reveals);
+    const check = () => {
+      const h = window.innerHeight;
+      const visible = [...pending].filter(el => {
+        const r = el.getBoundingClientRect();
+        return r.top < h * 0.92 && r.bottom > 0;
+      });
+      if (!visible.length) return;
+      visible.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top);
+      let lastRowTop = -999, rowCount = 0;
+      visible.forEach(el => {
+        const top = Math.round(el.getBoundingClientRect().top / 60);
+        if (top !== lastRowTop) { lastRowTop = top; rowCount = 0; } else { rowCount++; }
+        el.style.animationDelay = (rowCount * 80) + 'ms';
+        el.classList.add('on');
+        pending.delete(el);
+      });
+    };
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+    setTimeout(check, 300);
+    this._failsafe = setTimeout(() => {
+      pending.forEach(el => { el.style.animationDelay = '0ms'; el.classList.add('on'); });
+    }, 9000);
+  }
+
+  componentWillUnmount() {
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._failsafe) clearTimeout(this._failsafe);
+    document.documentElement.style.cursor = '';
+  }
+
+  renderVals() {
+    return {
+      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+      toggleTheme: () => this.applyTheme(this.state.theme === 'dark' ? 'light' : 'dark'),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
