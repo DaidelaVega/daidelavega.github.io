@@ -87,6 +87,14 @@
     #proj-rail{padding-top:24px!important;padding-bottom:56px!important}
   }
   @media (min-width:761px){.nav-menu{display:none!important}}
+  /* notebooks: pantallas anchas pero bajas — menos aire para que cada carpeta entre mejor */
+  @media (min-width:761px) and (max-height:860px){
+    #proyectos{padding-top:80px!important}
+    #proj-rail{padding-top:28px!important;padding-bottom:96px!important}
+    #sobremi,#habilidades{padding:88px 0 96px!important}
+    #contacto{padding-top:104px!important}
+    .hab-card{top:96px!important}
+  }
 </style>
 </helmet>
 
@@ -336,6 +344,19 @@ class Component extends DCLogic {
     const navlinks=[...document.querySelectorAll('[data-nav]')];
     const updateActive=()=>{ const thr=(scroller?scroller.clientHeight:window.innerHeight)*0.42; let cur=''; ids.forEach(id=>{ const el=document.getElementById(id); if(el && el.getBoundingClientRect().top<=thr) cur=id; }); navlinks.forEach(l=>{ const on=l.getAttribute('data-nav')===cur; l.style.background=on?'var(--accent-soft)':'transparent'; l.style.color=on?'var(--accent2)':'var(--text2)'; }); };
 
+    // Carpetas apiladas: si una sección es más alta que la pantalla, en vez de quedar trabada
+    // en top:0 (y que la siguiente le tape el final) se fija por abajo: top = alto visible − alto de la sección.
+    // Así se scrollea toda la sección y recién al llegar a su final queda quieta y entra la siguiente.
+    const stacks = [...document.querySelectorAll('section.stk')];
+    const mqMobile = window.matchMedia('(max-width:760px)');
+    const fitStacks = ()=>{ const vh = scroller ? scroller.clientHeight : window.innerHeight; stacks.forEach(s=>{ if(mqMobile.matches){ s.style.top=''; return; } const t = Math.min(0, Math.round(vh - s.offsetHeight)); s.style.top = t+'px'; }); };
+    fitStacks();
+    if(window.ResizeObserver){ this._ro = new ResizeObserver(()=>fitStacks()); stacks.forEach(s=>this._ro.observe(s)); if(scroller) this._ro.observe(scroller); }
+    window.addEventListener('resize', fitStacks, {passive:true});
+    window.addEventListener('load', fitStacks);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(fitStacks);
+    setTimeout(fitStacks, 300); setTimeout(fitStacks, 1200);
+
     const onScroll=()=>{ checkReveals(); updateActive(); deployPolys(); };
     if(scroller) scroller.addEventListener('scroll', onScroll, {passive:true});
     window.addEventListener('resize', onScroll, {passive:true});
@@ -415,7 +436,7 @@ class Component extends DCLogic {
   }
   componentDidUpdate(){ this.markSkill(); }
   markSkill(){ document.querySelectorAll('.skill-w').forEach(el=>el.classList.toggle('is-on', el.getAttribute('data-skill')===String(this.state.skill))); }
-  componentWillUnmount(){ if(this._raf) cancelAnimationFrame(this._raf); if(this._as) cancelAnimationFrame(this._as); if(this._phys) cancelAnimationFrame(this._phys); if(this._wi) clearInterval(this._wi); document.documentElement.style.cursor=''; }
+  componentWillUnmount(){ if(this._ro) this._ro.disconnect(); if(this._raf) cancelAnimationFrame(this._raf); if(this._as) cancelAnimationFrame(this._as); if(this._phys) cancelAnimationFrame(this._phys); if(this._wi) clearInterval(this._wi); document.documentElement.style.cursor=''; }
   renderVals(){
     const skills=[
       {t:'Ordenar información', d:'Estructuro contenido, jerarquías y navegación para que productos complejos sean fáciles de entender y usar.', c:['Arquitectura IA','Jerarquía visual','Navegación','Taxonomías'], a:'Dashboards B2B · plataformas internas · e-commerce · sitios corporativos'},
